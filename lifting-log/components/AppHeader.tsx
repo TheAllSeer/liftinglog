@@ -16,7 +16,6 @@ const AppHeader = ()=>{
         <View style={{flexDirection:'row'}}>
             <FontAwesome5 name='dumbbell' size={20} color={trademarks.white} ></FontAwesome5>
             <Text style={[{color:trademarks.white, fontWeight:"bold", marginLeft:"0.75%"}]}>EAVY LIFTING</Text>
-            {/* <Text style={[{color:trademarks.white}]}>BIG TRADEMARK BRAND</Text> */}
         </View>
         <View style={[headerStyles.settings]}>
             <Pressable>
