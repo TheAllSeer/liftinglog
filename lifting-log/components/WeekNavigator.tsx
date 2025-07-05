@@ -15,7 +15,7 @@ const WeekNavigator = ()=>{
             ))}
             </Pressable>
             <View>
-                <Text style={{color:"#f2f2f2"}}>
+                <Text style={styles.baseText}>
                     Week 14.6 - 21.6
                 </Text>
             </View>
