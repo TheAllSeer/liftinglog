@@ -1,15 +1,17 @@
-import { Text, View } from "react-native";
+import React from 'react';
+import {ScrollView, Text, View, Dimensions} from 'react-native';
+import styles from '@/styles/general';
+import WeekNavigator from '@/components/WeekNavigator';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function Index() {
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-    </View>
-  );
-}
+
+const Home = () => {
+  return <SafeAreaView style={[styles.base, {padding:'8%', height:"100%"}]}>
+    <WeekNavigator></WeekNavigator>
+
+    
+  </SafeAreaView>;
+};
+
+export default Home;
+
