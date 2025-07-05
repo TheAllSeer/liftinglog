@@ -1,4 +1,4 @@
-import styles from '@/styles/general';
+import styles, {trademarks} from '@/styles/general';
 
 export const weeklyVolumeData = [
         {   
