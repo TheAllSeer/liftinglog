@@ -31,7 +31,7 @@ const AppHeader = ()=>{
 const headerStyles = StyleSheet.create({
     container:{
         // some corrections done here for status bar. 
-        // height is 0.05 + 0.03, 
+        // height is 0.05 + sbHeight, align items flex end, padding bottom, margintop of -sbHeight.
         flexDirection:'row',
         justifyContent:'space-between',
         height: screenHeight * 0.05 + Constants.statusBarHeight,
