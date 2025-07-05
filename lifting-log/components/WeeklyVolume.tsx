@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View, ViewStyle, Dimensions} from 'react-native';
-import styles from '@/styles/general';
+import styles, {trademarks} from '@/styles/general';
 import { Ionicons } from '@expo/vector-icons';
 import { PieChart } from 'react-native-chart-kit';
 import { PieChartProps } from 'react-native-chart-kit/dist/PieChart';

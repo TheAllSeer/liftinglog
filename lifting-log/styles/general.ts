@@ -7,6 +7,12 @@ export const colors = {
 }
 
 
+export const trademarks = {
+    orange:'#ec9224',
+    white:"#f2f2f2",
+    black:"#202020"
+}
+
 const styles = StyleSheet.create({
     base:{
         backgroundColor:"#8c8c8c",
@@ -16,14 +22,15 @@ const styles = StyleSheet.create({
         color:"#f2f2f2",
     },
     homeCard:{
-        backgroundColor:"#737373",
+        backgroundColor:"#262626",
         borderRadius:10,
         padding:"2%",
         elevation:5,
-        borderWidth:1,
-        borderColor:"#4d4d4d",
+        borderWidth:0,
+        borderColor:"#000000",
         borderStyle:"solid",
-        marginVertical:"1%"
+        marginVertical:"1%",
+        margin:"2%"
     }
 })
 
