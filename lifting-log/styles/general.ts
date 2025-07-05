@@ -12,6 +12,9 @@ const styles = StyleSheet.create({
         backgroundColor:"#8c8c8c",
         color:"#f2f2f2",
     },
+    baseText:{
+        color:"#f2f2f2",
+    },
     homeCard:{
         backgroundColor:"#737373",
         borderRadius:10,
@@ -19,7 +22,8 @@ const styles = StyleSheet.create({
         elevation:5,
         borderWidth:1,
         borderColor:"#4d4d4d",
-        borderStyle:"solid"
+        borderStyle:"solid",
+        marginVertical:"1%"
     }
 })
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, ViewStyle, Pressable, StyleSheet} from 'react-native';
+import {Text, View, ViewStyle, Pressable} from 'react-native';
 import styles from '@/styles/general';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -15,7 +15,7 @@ const WeekNavigator = ()=>{
             ))}
             </Pressable>
             <View>
-                <Text style={{color:"#f2f2f2"}}>
+                <Text style={styles.baseText}>
                     Week 14.6 - 21.6
                 </Text>
             </View>
