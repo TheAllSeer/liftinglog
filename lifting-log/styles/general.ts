@@ -31,6 +31,10 @@ const styles = StyleSheet.create({
         borderStyle:"solid",
         marginVertical:"1%",
         margin:"2%"
+    },
+    flexCardCol:{
+        flexDirection:'column',
+        alignItems: 'center',
     }
 })
 
