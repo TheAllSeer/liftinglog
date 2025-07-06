@@ -12,7 +12,7 @@ const LiftsLog = ()=>{
 
     return <View style = {[styles.homeCard, styles.flexCardCol]}>
         <View style={[styles.homeCardHeader]}>
-            <Text style={[styles.baseText]}>WEEKLY WORKOUTS</Text>
+            <Text style={[styles.baseText]}>Lifting Log</Text>
         </View>
         <ScrollView 
         style={[logStyles.cardsContainer]} 
