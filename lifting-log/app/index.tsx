@@ -7,6 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import WeeklyVolume from '@/components/WeeklyVolume';
 import TopFive from '@/components/TopFive';
 import LiftsLog from '@/components/LiftsLog';
+
 const Home = () => {
   return <SafeAreaView style={[styles.base, {height:"100%"}]}>
     <AppHeader></AppHeader>
