@@ -7,14 +7,23 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import WeeklyVolume from '@/components/WeeklyVolume';
 import TopFive from '@/components/TopFive';
 import LiftsLog from '@/components/LiftsLog';
+import AddLiftButton from '@/components/AddLiftButton';
+import PersonalRecords from '@/components/PersonalRecords';
+import PersonalTrainer from '@/components/PersonalTrainer';
+
 
 const Home = () => {
-  return <SafeAreaView style={[styles.base, {height:"100%"}]}>
-    <AppHeader></AppHeader>
-    <WeekNavigator></WeekNavigator>
-    <WeeklyVolume></WeeklyVolume>
-    <TopFive></TopFive>
-    <LiftsLog></LiftsLog>
+  return <SafeAreaView style={[styles.base]}>
+    <ScrollView>
+        <AppHeader></AppHeader>
+        <WeekNavigator></WeekNavigator>
+        <WeeklyVolume></WeeklyVolume>
+        <TopFive></TopFive>
+        <LiftsLog></LiftsLog>
+        <PersonalRecords></PersonalRecords>
+        <PersonalTrainer></PersonalTrainer>
+    </ScrollView>
+    <AddLiftButton></AddLiftButton>
     
   </SafeAreaView>;
 };
