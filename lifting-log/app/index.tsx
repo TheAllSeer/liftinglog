@@ -13,9 +13,9 @@ import PersonalTrainer from '@/components/PersonalTrainer';
 
 
 const Home = () => {
-  return <SafeAreaView style={[styles.base]}>
+  return <SafeAreaView style={[styles.base, {flex:1}]}>
+    <AppHeader></AppHeader>
     <ScrollView>
-        <AppHeader></AppHeader>
         <WeekNavigator></WeekNavigator>
         <WeeklyVolume></WeeklyVolume>
         <TopFive></TopFive>
@@ -24,7 +24,6 @@ const Home = () => {
         <PersonalTrainer></PersonalTrainer>
     </ScrollView>
     <AddLiftButton></AddLiftButton>
-    
   </SafeAreaView>;
 };
 
