@@ -21,8 +21,19 @@ const styles = StyleSheet.create({
     baseText:{
         color:"#f2f2f2",
     },
+    homeCardHeader:{
+        backgroundColor:'black',
+        alignItems:'center',
+        borderTopLeftRadius:8,
+        borderTopRightRadius:8,
+        marginTop:'-2%',
+        width:"104%",
+        marginBottom:'1%'
+
+
+    },
     homeCard:{
-        backgroundColor:"#262626",
+        backgroundColor:trademarks.black,
         borderRadius:10,
         padding:"2%",
         elevation:5,

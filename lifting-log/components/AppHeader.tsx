@@ -14,8 +14,8 @@ const AppHeader = ()=>{
             <FontAwesome5 name='dumbbell' size={24} color={trademarks.white} ></FontAwesome5>
         </View>
         <View style={{flexDirection:'row'}}>
-            <FontAwesome5 name='dumbbell' size={20} color={trademarks.white} ></FontAwesome5>
-            <Text style={[{color:trademarks.white, fontWeight:"bold", marginLeft:"0.75%"}]}>EAVY LIFTING</Text>
+            <FontAwesome5 name='dumbbell' size={20} color={trademarks.white}style={[{transform:[{translateY:0}, {translateX: 0}]}]}></FontAwesome5>
+            <Text style={[{color:trademarks.white, fontSize:16, fontWeight:800, marginLeft:"0.75%"}]}>EAVY LIFTING</Text>
         </View>
         <View style={[headerStyles.settings]}>
             <Pressable>
@@ -42,7 +42,7 @@ const headerStyles = StyleSheet.create({
 
     },
     logo:{
-        marginLeft:"3%"
+        marginLeft:"3%",
     },
     settings:{
         marginRight:"3%"

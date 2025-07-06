@@ -5,11 +5,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { PieChart } from 'react-native-chart-kit';
 import { PieChartProps } from 'react-native-chart-kit/dist/PieChart';
 import {weeklyVolumeData} from '@/components/weeklyVolumeData'
+
+const screenWidth = Dimensions.get("window").width;
+const screenHeight = Dimensions.get("window").height;
+
 const WeeklyVolume = ()=>{
-    const screenWidth = Dimensions.get("window").width;
-    const screenHeight = Dimensions.get("window").height;
     const data:PieChartProps["data"] = weeklyVolumeData
-    const piechartWidth = screenWidth * 0.95;
+    const piechartWidth = screenWidth * 0.91;
     const piechartHeight = screenHeight * 0.3;
     const chartConfig = {
         backgroundColor: "transparent",        
@@ -20,7 +22,9 @@ const WeeklyVolume = ()=>{
     return <View
     style={[styles.base, styles.homeCard, wvStyles]}>
         <View style={[{flexDirection:'column',alignItems:"center"}]}>
-            <Text style={[styles.baseText]}>Weekly Volume</Text>
+            <View style={[styles.homeCardHeader]}>
+                <Text style={[styles.baseText]}>Weekly Volume</Text>
+            </View>
             <PieChart
              data={data}
              width={piechartWidth}
@@ -40,6 +44,8 @@ const wvStyles:ViewStyle = {
     flexDirection:'row',
     alignItems: 'center',
     justifyContent: 'space-around',
+    maxWidth:screenWidth * 0.95 //this at 95 and piechartWidth at 91 aligns the header with the homeCard. 
+    // i have no idea why. 
 }
 
 

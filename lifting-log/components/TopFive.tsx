@@ -9,7 +9,9 @@ const TopFive = ()=>{
 
     return <View
     style={[styles.base, styles.homeCard, styles.flexCardCol]}>
-        <Text style={[styles.baseText]}>Top 5 Muscle Groups</Text>
+        <View style={[styles.homeCardHeader]}>
+            <Text style={[styles.baseText]}>Top 5 Muscle Groups</Text>
+        </View>
         <View>
             {
                 data.slice(0, 5).map((entry, index)=>
