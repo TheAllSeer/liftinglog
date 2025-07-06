@@ -20,7 +20,7 @@ const WeeklyVolume = ()=>{
     return <View
     style={[styles.base, styles.homeCard, wvStyles]}>
         <View style={[{flexDirection:'column',alignItems:"center"}]}>
-            <Text style={[styles.baseText]}>This is a BIG chart!!</Text>
+            <Text style={[styles.baseText]}>Weekly Volume</Text>
             <PieChart
              data={data}
              width={piechartWidth}
@@ -38,8 +38,8 @@ const WeeklyVolume = ()=>{
 
 const wvStyles:ViewStyle = {
     flexDirection:'row',
-    justifyContent: 'space-around',
     alignItems: 'center',
+    justifyContent: 'space-around',
 }
 
 
