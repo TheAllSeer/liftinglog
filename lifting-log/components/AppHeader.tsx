@@ -14,8 +14,8 @@ const AppHeader = ()=>{
             <FontAwesome5 name='dumbbell' size={24} color={trademarks.white} ></FontAwesome5>
         </View>
         <View style={{flexDirection:'row'}}>
-            <FontAwesome5 name='dumbbell' size={20} color={trademarks.white}style={[{transform:[{translateY:0}, {translateX: 0}]}]}></FontAwesome5>
-            <Text style={[{color:trademarks.white, fontSize:16, fontWeight:800, marginLeft:"0.75%"}]}>EAVY LIFTING</Text>
+            <FontAwesome5 name='dumbbell' size={20} color={trademarks.white} style={[{transform:[{translateY:0}, {translateX: 0}]}]}></FontAwesome5>
+            <Text style={[{color:trademarks.white, fontSize:16, fontWeight:'800', marginLeft:4}]}>EAVY LIFTING</Text>
         </View>
         <View style={[headerStyles.settings]}>
             <Pressable>
@@ -35,17 +35,18 @@ const headerStyles = StyleSheet.create({
         justifyContent:'space-between',
         height: screenHeight * 0.05 + Constants.statusBarHeight,
         backgroundColor:trademarks.orange,
-        marginBottom:"1%",
+        marginBottom:8,
         alignItems:'flex-end',
         paddingBottom: 8,
-        marginTop: -Constants.statusBarHeight
+        paddingTop:Constants.statusBarHeight
+        
 
     },
     logo:{
-        marginLeft:"3%",
+        marginLeft:screenWidth * 0.03,
     },
     settings:{
-        marginRight:"3%"
+        marginRight:screenWidth * 0.03
     },
     brand:{
 
