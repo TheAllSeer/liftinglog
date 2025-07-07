@@ -8,7 +8,7 @@ export default function RootLayout() {
     return <SafeAreaView style={[styles.base, {flex:1}]}>
       <StatusBar 
         style="light"         
-        translucent={true} 
+        translucent={false} 
       />
       <AppHeader />
       <Stack screenOptions={{ headerShown: false }} /> 
