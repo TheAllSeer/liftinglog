@@ -11,9 +11,6 @@ export default function RootLayout() {
         translucent={false} 
       />
       <AppHeader />
-      <View><Text>Balls!</Text></View>
-      {/* here go the buttons to transition from presets to home */}
-      
       <Stack screenOptions={{ headerShown: false }} /> 
     </SafeAreaView>
 }
