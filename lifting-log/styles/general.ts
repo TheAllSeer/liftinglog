@@ -15,8 +15,7 @@ export const trademarks = {
 
 const styles = StyleSheet.create({
     base:{
-        backgroundColor:"#8c8c8c",
-        color:"#f2f2f2",
+        backgroundColor:"#8c8c8c"
     },
     baseText:{
         color:"#f2f2f2",

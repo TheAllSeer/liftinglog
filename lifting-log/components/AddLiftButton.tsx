@@ -28,7 +28,7 @@ const buttonStyle = StyleSheet.create({
         backgroundColor:trademarks.orange,
         width:screenWidth*0.15,
         height:screenWidth*0.15,
-        borderRadius:"50%",
+        borderRadius:50,
         justifyContent:'center',
         alignItems:'center'
 

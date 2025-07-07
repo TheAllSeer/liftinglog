@@ -13,18 +13,17 @@ import PersonalTrainer from '@/components/PersonalTrainer';
 
 
 const Home = () => {
-  return <SafeAreaView style={[styles.base, {flex:1}]}>
-    <AppHeader></AppHeader>
-    <ScrollView>
-        <WeekNavigator></WeekNavigator>
-        <WeeklyVolume></WeeklyVolume>
-        <TopFive></TopFive>
-        <LiftsLog></LiftsLog>
-        <PersonalRecords></PersonalRecords>
-        <PersonalTrainer></PersonalTrainer>
-    </ScrollView>
-    <AddLiftButton></AddLiftButton>
-  </SafeAreaView>;
+  return <View style={[styles.base, {flex:1}]}>
+        <ScrollView>
+            <WeekNavigator></WeekNavigator>
+            <WeeklyVolume></WeeklyVolume>
+            <TopFive></TopFive>
+            <LiftsLog></LiftsLog>
+            <PersonalRecords></PersonalRecords>
+            <PersonalTrainer></PersonalTrainer>
+        </ScrollView>
+      <AddLiftButton></AddLiftButton>
+    </View>;
 };
 
 export default Home;
