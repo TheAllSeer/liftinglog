@@ -20,7 +20,7 @@ const AppHeader = ()=>{
         <View style={[headerStyles.settings]}>
             <Pressable>
             {(({pressed})=>(
-                <Ionicons name='settings' size={24} color={pressed ? trademarks.black : trademarks.white} ></Ionicons>
+                <Ionicons name={pressed ? 'settings-outline' : 'settings'} size={24} color={trademarks.white} ></Ionicons>
             ))}
             </Pressable>
         </View>
