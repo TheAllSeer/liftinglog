@@ -6,7 +6,7 @@ const PersonalTrainer = ()=>{
 
     return <View style={[styles.homeCard, styles.flexCardCol]}>
         <View style={[styles.homeCardHeader]}>
-            <Text style={[styles.baseText]}>Your Personal Trainer</Text>
+            <Text style={[styles.baseText, styles.homeCardHeaderText]}>Your Personal Trainer</Text>
         </View>
         <Text style={[styles.baseText]}>Coming Soon!</Text>
 

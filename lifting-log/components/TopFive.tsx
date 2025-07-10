@@ -10,7 +10,7 @@ const TopFive = ()=>{
     return <View
     style={[styles.base, styles.homeCard, styles.flexCardCol]}>
         <View style={[styles.homeCardHeader]}>
-            <Text style={[styles.baseText]}>Top 5 Muscle Groups</Text>
+            <Text style={[styles.baseText, styles.homeCardHeaderText]}>Top 5 Muscle Groups</Text>
         </View>
         <View>
             {

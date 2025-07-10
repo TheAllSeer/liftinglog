@@ -23,7 +23,7 @@ const WeeklyVolume = ()=>{
     style={[styles.base, styles.homeCard, wvStyles]}>
         <View style={[{flexDirection:'column',alignItems:"center"}]}>
             <View style={[styles.homeCardHeader]}>
-                <Text style={[styles.baseText]}>Weekly Volume</Text>
+                <Text style={[styles.baseText, styles.homeCardHeaderText]}>Weekly Volume</Text>
             </View>
             <PieChart
              data={data}

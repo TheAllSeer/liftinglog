@@ -28,8 +28,12 @@ const styles = StyleSheet.create({
         marginTop:'-2%',
         width:"104%",
         marginBottom:'1%'
-
-
+    },
+    homeCardHeaderText:{
+        fontWeight:"600",
+        fontSize:20,
+        color:trademarks.white,
+        padding:2
     },
     homeCard:{
         backgroundColor:trademarks.black,

@@ -6,7 +6,7 @@ const PersonalRecords = ()=>{
 
     return <View style={[styles.homeCard, styles.flexCardCol]}>
         <View style={[styles.homeCardHeader]}>
-            <Text style={[styles.baseText]}>PRs</Text>
+            <Text style={[styles.baseText, styles.homeCardHeaderText]}>PRs</Text>
         </View>
         <Text style={[styles.baseText]}>Coming Soon!</Text>
 

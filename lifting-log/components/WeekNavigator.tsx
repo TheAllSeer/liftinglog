@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, ViewStyle, Pressable} from 'react-native';
+import {Text, View, StyleSheet, Pressable} from 'react-native';
 import styles, {trademarks} from '@/styles/general';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -7,7 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 const WeekNavigator = ()=>{
     return <View 
-        style={[styles.base, styles.homeCard, wnStyles]}
+        style={[styles.base, styles.homeCard, wnStyles.container]}
         >
             <Pressable>
             {(({pressed})=>(
@@ -15,7 +15,7 @@ const WeekNavigator = ()=>{
             ))}
             </Pressable>
             <View>
-                <Text style={styles.baseText}>
+                <Text style={[styles.baseText, wnStyles.weekText]}>
                     Week 14.6 - 21.6
                 </Text>
             </View>
@@ -27,11 +27,16 @@ const WeekNavigator = ()=>{
         </View>
 };
 
-const wnStyles:ViewStyle = {
-    flexDirection:'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-}
+const wnStyles = StyleSheet.create({
+    container:{
+        flexDirection:'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    weekText:{
+
+    }
+})
 
 
 export default WeekNavigator;
