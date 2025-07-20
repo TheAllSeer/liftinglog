@@ -4,6 +4,8 @@ export interface AddLiftButtonProps {
 
 export interface AddWorkoutFormProps {
     onClose: ()=>void;
+    isVisible:boolean;
+    onRequestClose : ()=>void;
 }
 
 export interface SetsViewProps {

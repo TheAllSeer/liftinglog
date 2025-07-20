@@ -15,16 +15,13 @@ import BackDrop from '@/components/util_components/BackDrop';
 
 const Home = () => {
   const [isWorkoutFormVisible, setIsWorkoutFormVisible] = useState(false);
+  const HandleOnCloseForm = () => setIsWorkoutFormVisible(false)
+  const HandleOnOpenForm = () => setIsWorkoutFormVisible(true)
 
 
 
   return <View style={[styles.base, {flex:1}]}>
         <ScrollView>
-            {isWorkoutFormVisible && (
-              <BackDrop onPress={() => setIsWorkoutFormVisible(false)}>
-                <AddWorkoutForm onClose={() => setIsWorkoutFormVisible(false)} />
-              </BackDrop>
-            )}
             <WeekNavigator></WeekNavigator>
             <WeeklyVolume></WeeklyVolume>
             <TopFive></TopFive>
@@ -32,7 +29,10 @@ const Home = () => {
             <PersonalRecords></PersonalRecords>
             <PersonalTrainer></PersonalTrainer>
         </ScrollView>
-      {!isWorkoutFormVisible && <AddLiftButton onPress={() => setIsWorkoutFormVisible(true)}></AddLiftButton>}
+        {isWorkoutFormVisible && (
+          <AddWorkoutForm onRequestClose={HandleOnCloseForm} isVisible = {isWorkoutFormVisible} onClose={HandleOnCloseForm} />
+        )}
+        {!isWorkoutFormVisible && <AddLiftButton onPress={HandleOnOpenForm}></AddLiftButton>}
     </View>;
 };
 
