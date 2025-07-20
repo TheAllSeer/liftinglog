@@ -11,15 +11,20 @@ import PersonalRecords from '@/components/PersonalRecords';
 import PersonalTrainer from '@/components/PersonalTrainer';
 import NavButtons from '@/components/NavButtons'
 import AddWorkoutForm from '@/components/form_components/AddWorkoutForm'
+import BackDrop from '@/components/util_components/BackDrop';
 
 const Home = () => {
-  const [isWorkoutFormVisible, setIsWorkoutFormVisible] = useState(true);
+  const [isWorkoutFormVisible, setIsWorkoutFormVisible] = useState(false);
 
 
 
   return <View style={[styles.base, {flex:1}]}>
         <ScrollView>
-            {isWorkoutFormVisible && <AddWorkoutForm onClose={() => setIsWorkoutFormVisible(false)} />}
+            {isWorkoutFormVisible && (
+              <BackDrop onPress={() => setIsWorkoutFormVisible(false)}>
+                <AddWorkoutForm onClose={() => setIsWorkoutFormVisible(false)} />
+              </BackDrop>
+            )}
             <WeekNavigator></WeekNavigator>
             <WeeklyVolume></WeeklyVolume>
             <TopFive></TopFive>
@@ -27,7 +32,7 @@ const Home = () => {
             <PersonalRecords></PersonalRecords>
             <PersonalTrainer></PersonalTrainer>
         </ScrollView>
-      <AddLiftButton onPress={() => setIsWorkoutFormVisible(true)}></AddLiftButton>
+      {!isWorkoutFormVisible && <AddLiftButton onPress={() => setIsWorkoutFormVisible(true)}></AddLiftButton>}
     </View>;
 };
 
