@@ -4,6 +4,7 @@ import styles, {trademarks} from '@/styles/general';
 import {AddWorkoutFormProps, Set} from '@/components/props'
 
 import SetsView from './SetsView';
+import SaveWorkout from './SaveWorkout';
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
@@ -41,7 +42,8 @@ const AddWorkoutForm = ({onClose, isVisible, onRequestClose}:AddWorkoutFormProps
                 </View>
                 <SetsView sets={sets}></SetsView>
             </ScrollView>
-            </Pressable>
+            <SaveWorkout onReset={()=>{}} onSave={()=>{}}></SaveWorkout>
+        </Pressable>
 
         </Pressable>
     </Modal>

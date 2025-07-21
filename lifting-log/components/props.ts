@@ -29,3 +29,8 @@ export interface WeightTypeSwitchProps {
 export interface AddSetProps {
   onAddSet: () => void;
 }
+export interface SaveWorkoutButtonProps {
+  onSave: () => void;
+  onReset: () => void;
+  isLoading?: boolean;
+}
