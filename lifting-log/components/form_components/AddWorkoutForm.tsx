@@ -24,15 +24,16 @@ const AddWorkoutForm = ({onClose, isVisible, onRequestClose}:AddWorkoutFormProps
         transparent={true}
         onRequestClose={onClose}>
         <Pressable style={{flex: 1}} onPress={onClose}>
+            <Pressable onPress={() => {}} style={[wfStyles.workoutFormContainer]}>
             <ScrollView 
-            style={[wfStyles.workoutFormContainer]}
-            onTouchStart={(e) => e.stopPropagation()}
-            onTouchEnd={(e) => e.stopPropagation()}>
+            style={[{flex:1}]}
+            onTouchStart={(e) => e.stopPropagation()}>
                 <View style={{alignItems:'center'}}>
                     <Text style={[styles.baseText, wfStyles.workoutFormHeader]}>Add Workout</Text>
                 </View>
                 <SetsView sets={sets}></SetsView>
             </ScrollView>
+            </Pressable>
 
         </Pressable>
     </Modal>

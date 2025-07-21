@@ -18,8 +18,12 @@ const SetsView = ({sets}:SetsViewProps)=>{
                 && (<View style={{alignItems:'center'}}>
                     <Text style={[styles.baseText, svStyle.exerciseNameHeader]}>{set.exerciseName}</Text>
                 </View>)
-
                 }
+                <View style={[svStyle.setView]}>
+                    <View><Text style={[[styles.baseText, svStyle.repNumber]]}>{set.reps}</Text></View>
+                    <View><Text style={[[styles.baseText, svStyle.repWeight]]}>{set.weight.amount}</Text></View>
+                    <View><Text style={[[styles.baseText, svStyle.repWeightType]]}>{set.weight.type}</Text></View>
+                </View>
             </View>
         ))
 
@@ -45,6 +49,22 @@ const svStyle = StyleSheet.create({
         borderBottomWidth:.25,
         borderBottomColor:trademarks.white,
         width:screenWidth*0.75
+    },
+    setView:{
+        flexDirection:'row',
+        height:screenHeight * 0.03,
+        width:screenWidth*0.9,
+        alignSelf:'center'
+    },
+    repNumber:{
+
+    },
+    repWeight:{
+
+    },
+    repWeightType:{
+
     }
+
 })
 export default SetsView
