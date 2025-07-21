@@ -1,13 +1,13 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions, Pressable } from 'react-native';
+import { StyleSheet, View, Dimensions, Pressable, TouchableOpacity, Button } from 'react-native';
 import styles, {trademarks} from '@/styles/general';
-
+import {AddLiftButtonProps} from '@/components/props'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
-const AddLiftButton = ()=>{
-    return <Pressable style={[buttonStyle.pressable]}>
+const AddLiftButton = ({onPress} : AddLiftButtonProps)=>{
+    return <Pressable onPress={onPress} style={[buttonStyle.pressable]}>
             {(({pressed})=>(
                 <View style={[buttonStyle.button, {opacity:pressed ? 1 : .4}]}>
                     <MaterialCommunityIcons 
@@ -19,6 +19,7 @@ const AddLiftButton = ()=>{
                 </View>
             ))}
             </Pressable>
+    
     
 };
 

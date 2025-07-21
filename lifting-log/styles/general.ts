@@ -15,18 +15,18 @@ export const trademarks = {
 
 const styles = StyleSheet.create({
     base:{
-        backgroundColor:"#8c8c8c"
+        backgroundColor:"#000000"
     },
     baseText:{
-        color:"#f2f2f2",
+        color:"#ffffff",
     },
     homeCardHeader:{
-        backgroundColor:'black',
+        backgroundColor:"#262626",
         alignItems:'center',
         borderTopLeftRadius:8,
         borderTopRightRadius:8,
-        marginTop:'-2%',
-        width:"104%",
+        marginTop:'-3%',
+        width:"104.5%",
         marginBottom:'1%'
     },
     homeCardHeaderText:{
@@ -36,12 +36,12 @@ const styles = StyleSheet.create({
         padding:2
     },
     homeCard:{
-        backgroundColor:trademarks.black,
+        backgroundColor:"#404040",
         borderRadius:10,
         padding:"2%",
         elevation:5,
         borderWidth:0,
-        borderColor:"#000000",
+        borderColor:"#0d0d0d",
         borderStyle:"solid",
         marginVertical:"1%",
         margin:"2%"
