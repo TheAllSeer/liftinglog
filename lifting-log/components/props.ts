@@ -20,3 +20,8 @@ export interface Set {
   reps: number;
   exerciseName:string;
 }
+
+export interface WeightTypeSwitchProps {
+    weightType: Set["weight"]['type']
+    onTypeChange: (type: Set["weight"]['type']) => void;
+}

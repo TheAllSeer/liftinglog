@@ -2,14 +2,14 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions, Pressable, ScrollView, Text } from 'react-native';
 import styles, {trademarks} from '@/styles/general';
-import {SetsViewProps} from '@/components/props'
+import {SetsViewProps, WeightTypeSwitchProps} from '@/components/props'
+import KglbSwitch from './KglbSwitch';
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 
 const SetsView = ({sets}:SetsViewProps)=>{
-
 
     return <View style={[svStyle.allSetsContainerStyle]}>
         {sets.map((set, index)=>(
@@ -22,7 +22,7 @@ const SetsView = ({sets}:SetsViewProps)=>{
                 <View style={[svStyle.setView]}>
                     <View><Text style={[[styles.baseText, svStyle.repNumber]]}>{set.reps}</Text></View>
                     <View><Text style={[[styles.baseText, svStyle.repWeight]]}>{set.weight.amount}</Text></View>
-                    <View><Text style={[[styles.baseText, svStyle.repWeightType]]}>{set.weight.type}</Text></View>
+                    <KglbSwitch weightType={set.weight.type} onTypeChange={()=>{}} ></KglbSwitch>
                 </View>
             </View>
         ))
@@ -50,21 +50,38 @@ const svStyle = StyleSheet.create({
         borderBottomColor:trademarks.white,
         width:screenWidth*0.75
     },
+    // some styles from here are ai
     setView:{
         flexDirection:'row',
-        height:screenHeight * 0.03,
+        height:screenHeight * 0.06, 
         width:screenWidth*0.9,
-        alignSelf:'center'
+        alignSelf:'center',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: 10,
+        marginVertical: 5,
     },
     repNumber:{
-
+        backgroundColor: trademarks.black,
+        borderColor: trademarks.white,
+        borderWidth: 1,
+        borderRadius: 8,
+        paddingHorizontal: 15,
+        paddingVertical: 8,
+        textAlign: 'center',
+        minWidth: 60,
     },
     repWeight:{
-
+        backgroundColor: trademarks.black,
+        borderColor: trademarks.white,
+        borderWidth: 1,
+        borderRadius: 8,
+        paddingHorizontal: 15,
+        paddingVertical: 8,
+        textAlign: 'center',
+        minWidth: 80,
     },
-    repWeightType:{
-
-    }
+    // ai gave me help
 
 })
 export default SetsView

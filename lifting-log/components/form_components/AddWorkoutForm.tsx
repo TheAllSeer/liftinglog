@@ -16,7 +16,15 @@ const AddWorkoutForm = ({onClose, isVisible, onRequestClose}:AddWorkoutFormProps
             amount:50,
             type:"kgs"
         }
-    }])
+    },
+    {
+            reps:7,
+            exerciseName:"Squats",
+            weight:{
+                amount:55,
+                type:"kgs"
+            }
+        }])
 
     return <Modal 
         visible={isVisible}
