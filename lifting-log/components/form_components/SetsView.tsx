@@ -4,6 +4,7 @@ import { StyleSheet, View, Dimensions, Pressable, ScrollView, Text } from 'react
 import styles, {trademarks} from '@/styles/general';
 import {SetsViewProps, WeightTypeSwitchProps} from '@/components/props'
 import KglbSwitch from './KglbSwitch';
+import AddSet from './AddSet';
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -26,8 +27,11 @@ const SetsView = ({sets}:SetsViewProps)=>{
                 </View>
             </View>
         ))
-
         }
+        <AddSet onAddSet = {()=>{}}></AddSet>
+        <View>
+
+        </View>
     </View>
 
 }

@@ -25,3 +25,7 @@ export interface WeightTypeSwitchProps {
     weightType: Set["weight"]['type']
     onTypeChange: (type: Set["weight"]['type']) => void;
 }
+
+export interface AddSetProps {
+  onAddSet: () => void;
+}
