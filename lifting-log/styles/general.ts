@@ -16,7 +16,10 @@ export const trademarks = {
 export const root = {
     // this is to be filled out but maybe work on backend first 
     // so ye? you took an hour to remove some borders and margin?
-    
+    // this should be filled with: 
+    // consistent color palette
+    // definitions such as "header text", "large text", "largest text", "medium text". give yourself baselines to work with. 
+    // after this you will change all of the styles.
 }
 
 
