@@ -13,6 +13,15 @@ export const trademarks = {
     black:"#202020"
 }
 
+export const root = {
+    // this is to be filled out but maybe work on backend first 
+    // so ye? you took an hour to remove some borders and margin?
+    
+}
+
+
+
+
 const styles = StyleSheet.create({
     base:{
         backgroundColor:"#000000"
@@ -27,6 +36,8 @@ const styles = StyleSheet.create({
         borderTopRightRadius:8,
         marginTop:'-3%',
         width:"104.5%",
+        // borderBottomColor:'#ffffff',
+        // borderBottomWidth:0.5,
         marginBottom:'1%'
     },
     homeCardHeaderText:{
