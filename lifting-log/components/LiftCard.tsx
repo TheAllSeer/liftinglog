@@ -19,8 +19,6 @@ const cardStyle = StyleSheet.create({
     card:{
         width: screenWidth * 0.25,
         backgroundColor: trademarks.black,
-        borderColor: trademarks.white,
-        borderWidth: 1,
         borderRadius: 12,
         padding: 12,
         height: screenHeight * 0.12,

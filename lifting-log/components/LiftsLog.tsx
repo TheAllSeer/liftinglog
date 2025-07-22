@@ -30,8 +30,6 @@ const LiftsLog = ()=>{
 const logStyles = StyleSheet.create({
     cardsContainer:{
         flexDirection:'row',
-        marginHorizontal:'-0.5%' //make up for the horizontal margin of the lift logs inside
-
     }
 })
 export default LiftsLog;
