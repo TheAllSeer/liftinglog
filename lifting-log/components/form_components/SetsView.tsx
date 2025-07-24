@@ -10,7 +10,7 @@ const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 
-const SetsView = ({sets}:SetsViewProps)=>{
+const SetsView = ({sets, onAddSet}:SetsViewProps)=>{
 
     return <View style={[svStyle.allSetsContainerStyle]}>
         {sets.map((set, index)=>(
@@ -28,7 +28,7 @@ const SetsView = ({sets}:SetsViewProps)=>{
             </View>
         ))
         }
-        <AddSet onAddSet = {()=>{}}></AddSet>
+        <AddSet onAddSet = {()=>{onAddSet()}}></AddSet>
         <View>
 
         </View>

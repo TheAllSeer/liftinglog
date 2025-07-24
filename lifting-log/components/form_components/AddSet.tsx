@@ -9,8 +9,8 @@ import {AddSetProps} from '@/components/props'
 const AddSet = ({ onAddSet }: AddSetProps) => {
     return (
         <Pressable 
-        style={addSetStyles.addSetButton}
-        onPress={onAddSet}
+        style={[addSetStyles.addSetButton ]}
+        onPress={()=>{onAddSet()}}
         >
         <Text style={[styles.baseText, addSetStyles.addSetText]}>+</Text>
         </Pressable>
