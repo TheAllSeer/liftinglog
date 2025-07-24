@@ -10,7 +10,7 @@ const AddSet = ({ onAddSet }: AddSetProps) => {
     return (
         <Pressable 
         style={[addSetStyles.addSetButton ]}
-        onPress={()=>{onAddSet()}}
+        onPress={onAddSet}
         >
         <Text style={[styles.baseText, addSetStyles.addSetText]}>+</Text>
         </Pressable>
