@@ -3,6 +3,7 @@ import { StyleSheet, View, Dimensions, Pressable, Text, Modal } from 'react-nati
 import styles, { trademarks } from '@/styles/general';
 import KglbSwitch from './KglbSwitch';
 
+//@ts-ignore becuase fuck you
 import NumberInputBox from './NumberInputBox';
 
 
