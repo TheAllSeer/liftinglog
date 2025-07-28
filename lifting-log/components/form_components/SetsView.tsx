@@ -5,6 +5,7 @@ import styles, {trademarks} from '@/styles/general';
 import {SetsViewProps, WeightTypeSwitchProps} from '@/components/props'
 import KglbSwitch from './KglbSwitch';
 import AddSet from './AddSet';
+import SingleSetView from './SingleSetView'
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -14,17 +15,14 @@ const SetsView = ({sets, onAddSet}:SetsViewProps)=>{
 
     return <View style={[svStyle.allSetsContainerStyle]}>
         {sets.map((set, index)=>(
-            <View key={index} style={[svStyle.setContainerStyle]}>
+            <View>
                 {(!sets?.[index-1] || sets?.[index-1].exerciseName !== set.exerciseName)
                 && (<View style={{alignItems:'center'}}>
                     <Text style={[styles.baseText, svStyle.exerciseNameHeader]}>{set.exerciseName}</Text>
                 </View>)
                 }
-                <View style={[svStyle.setView]}>
-                    <View><Text style={[[styles.baseText, svStyle.repNumber]]}>{set.reps}</Text></View>
-                    <View><Text style={[[styles.baseText, svStyle.repWeight]]}>{set.weight.amount}</Text></View>
-                    <KglbSwitch weightType={set.weight.type} onTypeChange={()=>{}} ></KglbSwitch>
-                </View>
+            <SingleSetView set={set} key={index} setIndex={index}>
+            </SingleSetView>
             </View>
         ))
         }

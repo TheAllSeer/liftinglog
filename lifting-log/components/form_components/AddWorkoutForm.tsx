@@ -4,6 +4,7 @@ import styles, {trademarks} from '@/styles/general';
 import {AddWorkoutFormProps, Set} from '@/components/props'
 import AddSetModal from './AddSetModal';
 
+
 import SetsView from './SetsView';
 import SaveWorkout from './SaveWorkout';
 const screenWidth = Dimensions.get("window").width;
@@ -41,7 +42,6 @@ const AddWorkoutForm = ({onClose, isVisible, onRequestClose}:AddWorkoutFormProps
             <Pressable onPress={() => {}} style={[wfStyles.workoutFormContainer]}>
             <ScrollView 
             style={[{flex:1}]}
-            // onTouchStart={(e) => e.stopPropagation()}
             >
                 <View style={{alignItems:'center'}}>
                     <Text style={[styles.baseText, wfStyles.workoutFormHeader]}>Add Workout</Text>
@@ -51,11 +51,6 @@ const AddWorkoutForm = ({onClose, isVisible, onRequestClose}:AddWorkoutFormProps
             <SaveWorkout onReset={()=>{}} onSave={()=>{}}></SaveWorkout>
             </Pressable>
         </Pressable>
-                <AddSetModal
-                    visible={showAddSetModal}
-                    onClose={() => setShowAddSetModal(false)}
-                    onAddSet={handleAddSet}
-                />
 
     </Modal>
 
