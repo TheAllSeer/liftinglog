@@ -42,3 +42,8 @@ export interface SaveWorkoutButtonProps {
   onReset: () => void;
   isLoading?: boolean;
 }
+
+export interface NumberInputBoxProps {
+  inputNumber?:number;
+  onChange: (value:number)=>void;
+}

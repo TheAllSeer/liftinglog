@@ -30,7 +30,6 @@ const AddWorkoutForm = ({onClose, isVisible, onRequestClose}:AddWorkoutFormProps
     const [showAddSetModal, setShowAddSetModal] = useState(false);
     const handleAddSet = (newSet: Set) => {
         setSets([...sets, newSet]);
-        
     };
 
     return <Modal 

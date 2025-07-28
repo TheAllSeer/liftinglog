@@ -3,6 +3,9 @@ import { StyleSheet, View, Dimensions, Pressable, Text, Modal } from 'react-nati
 import styles, { trademarks } from '@/styles/general';
 import KglbSwitch from './KglbSwitch';
 
+import NumberInputBox from './NumberInputBox';
+
+
 import {AddSetModalProps} from '@/components/props'
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -15,6 +18,7 @@ const AddSetModal = ({ visible, onClose, onAddSet }: AddSetModalProps) => {
   const [weight, setWeight] = useState(50);
   const [weightType, setWeightType] = useState<'kgs' | 'lbs'>('kgs');
   const [showDropdown, setShowDropdown] = useState(false);
+  const [currentSetInputNumber, setCurrentSetInputNumber] = useState(0);
 
   const exercises = ['Bicep Curls', 'Squats'];
 
@@ -92,7 +96,10 @@ const AddSetModal = ({ visible, onClose, onAddSet }: AddSetModalProps) => {
           {/* Set Input (matching existing design) */}
           <View style={asmStyles.setView}>
             <Pressable onPress={handleRepsChange}>
-              <Text style={[styles.baseText, asmStyles.repNumber]}>{reps}</Text>
+              <NumberInputBox
+                inputNumber={currentSetInputNumber}
+                onChange={(newValue) => setCurrentSetInputNumber(newValue)}
+              ></NumberInputBox>
             </Pressable>
             <Pressable onPress={handleWeightChange}>
               <Text style={[styles.baseText, asmStyles.repWeight]}>{weight}</Text>
