@@ -13,7 +13,7 @@ const screenHeight = Dimensions.get("window").height;
 
 const SetsView = ({sets, onAddSet}:SetsViewProps)=>{
 
-    return <View style={[svStyle.allSetsContainerStyle]}>
+    return <View key={"setsviewcontainer"}style={[svStyle.allSetsContainerStyle]}>
         {sets.map((set, index)=>(
             <View>
                 {(!sets?.[index-1] || sets?.[index-1].exerciseName !== set.exerciseName)
