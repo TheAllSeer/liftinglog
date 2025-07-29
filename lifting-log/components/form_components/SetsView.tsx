@@ -2,7 +2,7 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions, Pressable, ScrollView, Text } from 'react-native';
 import styles, {trademarks} from '@/styles/general';
-import {SetsViewProps, WeightTypeSwitchProps} from '@/components/props'
+import {SetsViewProps, WeightTypeSwitchProps, Set} from '@/components/props'
 import KglbSwitch from './KglbSwitch';
 import AddSet from './AddSet';
 import SingleSetView from './SingleSetView'
@@ -11,17 +11,20 @@ const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 
-const SetsView = ({sets, onAddSet}:SetsViewProps)=>{
+const SetsView = ({sets, onAddSet, onSetUpdate}:SetsViewProps)=>{
 
-    return <View key={"setsviewcontainer"}style={[svStyle.allSetsContainerStyle]}>
+    const handleSetUpdate = (index: number, updatedSet: Set) => {
+        onSetUpdate(index, updatedSet);
+    };
+    return <View key={"setsviewcontainer"} style={[svStyle.allSetsContainerStyle]}>
         {sets.map((set, index)=>(
-            <View>
+            <View key={index}>
                 {(!sets?.[index-1] || sets?.[index-1].exerciseName !== set.exerciseName)
                 && (<View style={{alignItems:'center'}}>
                     <Text style={[styles.baseText, svStyle.exerciseNameHeader]}>{set.exerciseName}</Text>
                 </View>)
                 }
-            <SingleSetView set={set} key={index} setIndex={index}>
+            <SingleSetView set={set} key={'_' + index.toString()} setIndex={index} onSetUpdate={handleSetUpdate}>
             </SingleSetView>
             </View>
         ))

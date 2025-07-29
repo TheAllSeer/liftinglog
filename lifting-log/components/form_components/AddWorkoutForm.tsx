@@ -32,7 +32,11 @@ const AddWorkoutForm = ({onClose, isVisible, onRequestClose}:AddWorkoutFormProps
     const handleAddSet = (newSet: Set) => {
         setSets([...sets, newSet]);
     };
-
+    const handleSetUpdate = (index: number, updatedSet: Set) => {
+        setSets(prevSets => 
+            prevSets.map((set, i) => i === index ? updatedSet : set)
+        );
+    };
     return <Modal 
         visible={isVisible}
         animationType="slide"
@@ -46,7 +50,7 @@ const AddWorkoutForm = ({onClose, isVisible, onRequestClose}:AddWorkoutFormProps
                 <View style={{alignItems:'center'}}>
                     <Text style={[styles.baseText, wfStyles.workoutFormHeader]}>Add Workout</Text>
                 </View>
-                <SetsView sets={sets} onAddSet={() => {setShowAddSetModal(true)}} ></SetsView>
+                <SetsView sets={sets} onSetUpdate = {handleSetUpdate} onAddSet={() => {setShowAddSetModal(true)}} ></SetsView>
             </ScrollView>
             <SaveWorkout onReset={()=>{}} onSave={()=>{}}></SaveWorkout>
             </Pressable>

@@ -11,6 +11,7 @@ export interface AddWorkoutFormProps {
 export interface SetsViewProps {
     sets:Set[];
     onAddSet:()=>void;
+    onSetUpdate: (index: number, updatedSet: Set) => void;
 }
 
 export interface Set {
@@ -47,6 +48,7 @@ export interface SaveWorkoutButtonProps {
 export interface singleSetViewProps {
   set:Set;
   setIndex:number;
+  onSetUpdate: (index: number, updatedSet: Set) => void;
 }
 
 export interface NumberInputBoxProps {
