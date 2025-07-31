@@ -5,6 +5,8 @@ export interface Set {
     };
     reps: number;
     exerciseName:string;
+    isSuperSet:boolean;
+    superSet?:superSet;
 }
 export interface superSet {
     weight: {
@@ -21,6 +23,4 @@ export interface Workout {
   workoutId:string;
   workoutDate:Date;
   sets:Set[];
-  isSuperSet:boolean;
-  superSet?:superSet;
 }
