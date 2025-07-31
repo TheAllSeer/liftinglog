@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Dimensions, Pressable, ScrollView, Text, Modal } from 'react-native';
 import styles, {trademarks} from '@/styles/general';
 import {AddWorkoutFormProps, Set} from '@/components/props'
+import AddSetModal from './AddSetModal';
+
 
 import SetsView from './SetsView';
 import SaveWorkout from './SaveWorkout';
@@ -25,8 +27,16 @@ const AddWorkoutForm = ({onClose, isVisible, onRequestClose}:AddWorkoutFormProps
                 amount:55,
                 type:"kgs"
             }
-        }])
-
+        }]);
+    const [showAddSetModal, setShowAddSetModal] = useState(false);
+    const handleAddSet = (newSet: Set) => {
+        setSets([...sets, newSet]);
+    };
+    const handleSetUpdate = (index: number, updatedSet: Set) => {
+        setSets(prevSets => 
+            prevSets.map((set, i) => i === index ? updatedSet : set)
+        );
+    };
     return <Modal 
         visible={isVisible}
         animationType="slide"
@@ -36,16 +46,16 @@ const AddWorkoutForm = ({onClose, isVisible, onRequestClose}:AddWorkoutFormProps
             <Pressable onPress={() => {}} style={[wfStyles.workoutFormContainer]}>
             <ScrollView 
             style={[{flex:1}]}
-            onTouchStart={(e) => e.stopPropagation()}>
+            >
                 <View style={{alignItems:'center'}}>
                     <Text style={[styles.baseText, wfStyles.workoutFormHeader]}>Add Workout</Text>
                 </View>
-                <SetsView sets={sets}></SetsView>
+                <SetsView sets={sets} onSetUpdate = {handleSetUpdate} onAddSet={() => {setShowAddSetModal(true)}} ></SetsView>
             </ScrollView>
             <SaveWorkout onReset={()=>{}} onSave={()=>{}}></SaveWorkout>
+            </Pressable>
         </Pressable>
 
-        </Pressable>
     </Modal>
 
 }

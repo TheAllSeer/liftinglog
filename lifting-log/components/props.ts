@@ -9,7 +9,9 @@ export interface AddWorkoutFormProps {
 }
 
 export interface SetsViewProps {
-    sets:Set[]
+    sets:Set[];
+    onAddSet:()=>void;
+    onSetUpdate: (index: number, updatedSet: Set) => void;
 }
 
 export interface Set {
@@ -29,8 +31,27 @@ export interface WeightTypeSwitchProps {
 export interface AddSetProps {
   onAddSet: () => void;
 }
+
+export interface AddSetModalProps {
+  visible: boolean;
+  onClose: () => void;
+  onAddSet: (set: { exerciseName: string; reps: number; weight: { amount: number; type: 'kgs' | 'lbs' } }) => void;
+}
+
 export interface SaveWorkoutButtonProps {
   onSave: () => void;
   onReset: () => void;
   isLoading?: boolean;
+}
+
+
+export interface singleSetViewProps {
+  set:Set;
+  setIndex:number;
+  onSetUpdate: (index: number, updatedSet: Set) => void;
+}
+
+export interface NumberInputBoxProps {
+  inputNumber?:number;
+  onChange: (value:number)=>void;
 }
