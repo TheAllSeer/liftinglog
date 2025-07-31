@@ -4,7 +4,7 @@ import styles, { trademarks } from '@/styles/general';
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
-import {AddSetProps} from '@/components/props'
+import {AddSetProps} from '@/utils/props'
 
 const AddSet = ({ onAddSet }: AddSetProps) => {
     return (

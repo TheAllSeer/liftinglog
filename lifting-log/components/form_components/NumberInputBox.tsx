@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Dimensions, Pressable, ScrollView, Text, Modal } from 'react-native';
 import styles, {trademarks} from '@/styles/general';
-import { NumberInputBoxProps } from '../props';
+import { NumberInputBoxProps } from '../../utils/props';
 
 
 

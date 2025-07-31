@@ -2,7 +2,8 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions, Pressable, ScrollView, Text } from 'react-native';
 import styles, {trademarks} from '@/styles/general';
-import {SetsViewProps, WeightTypeSwitchProps, Set} from '@/components/props'
+import {SetsViewProps, WeightTypeSwitchProps} from '@/utils/props'
+import { Set } from '@/utils/types';
 import KglbSwitch from './KglbSwitch';
 import AddSet from './AddSet';
 import SingleSetView from './SingleSetView'

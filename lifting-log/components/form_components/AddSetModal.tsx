@@ -7,7 +7,7 @@ import KglbSwitch from './KglbSwitch';
 import NumberInputBox from './NumberInputBox';
 
 
-import {AddSetModalProps} from '@/components/props'
+import {AddSetModalProps} from '@/utils/props'
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 

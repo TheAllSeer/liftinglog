@@ -1,3 +1,5 @@
+import { Set } from "./types";
+
 export interface AddLiftButtonProps {
   onPress: () => void;
 }
@@ -14,14 +16,6 @@ export interface SetsViewProps {
     onSetUpdate: (index: number, updatedSet: Set) => void;
 }
 
-export interface Set {
-  weight: {
-    amount: number;
-    type: 'kgs' | 'lbs';
-  };
-  reps: number;
-  exerciseName:string;
-}
 
 export interface WeightTypeSwitchProps {
     weightType: Set["weight"]['type']

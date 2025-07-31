@@ -15,6 +15,7 @@ import BackDrop from '@/components/util_components/BackDrop';
 
 const Home = () => {
   const [isWorkoutFormVisible, setIsWorkoutFormVisible] = useState(false);
+  const [workoutData, setWorkoutData] = useState({workouts:[]})
   const HandleOnCloseForm = () => setIsWorkoutFormVisible(false)
   const HandleOnOpenForm = () => setIsWorkoutFormVisible(true)
 

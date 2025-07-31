@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Dimensions, Pressable, ScrollView, Text, Modal } from 'react-native';
 import styles, {trademarks} from '@/styles/general';
-import {AddWorkoutFormProps, Set} from '@/components/props'
+import {AddWorkoutFormProps} from '@/utils/props'
+import { Set } from '@/utils/types';
 import AddSetModal from './AddSetModal';
 
 

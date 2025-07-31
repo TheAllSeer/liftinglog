@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions, Pressable, TouchableOpacity, Button } from 'react-native';
 import styles, {trademarks} from '@/styles/general';
-import {AddLiftButtonProps} from '@/components/props'
+import {AddLiftButtonProps} from '@/utils/props'
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Pressable, Text, StyleSheet } from 'react-native';
 import styles, { trademarks } from '@/styles/general';
-import { WeightTypeSwitchProps } from '../props';
+import { WeightTypeSwitchProps } from '../../utils/props';
 
 const WeightTypeSwitch = ({ weightType, onTypeChange }: WeightTypeSwitchProps) => {
     return (
