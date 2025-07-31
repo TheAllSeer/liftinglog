@@ -3,7 +3,6 @@ import { TextInput, StyleSheet, View, Dimensions, Pressable, ScrollView, Text } 
 import styles, {trademarks} from '@/styles/general';
 import {Set, SetsViewProps, WeightTypeSwitchProps, singleSetViewProps} from '@/components/props'
 import KglbSwitch from './KglbSwitch';
-import AddSet from './AddSet';
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
