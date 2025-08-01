@@ -4,7 +4,7 @@ import styles, {trademarks} from '@/styles/general';
 import {AddWorkoutFormProps} from '@/utils/props'
 import { Set } from '@/utils/types';
 import AddSetModal from './AddSetModal';
-
+import { mockSets } from '@/utils/mockData';
 
 import SetsView from './SetsView';
 import SaveWorkout from './SaveWorkout';
@@ -13,22 +13,7 @@ const screenHeight = Dimensions.get("window").height;
 
 
 const AddWorkoutForm = ({onClose, isVisible, onRequestClose}:AddWorkoutFormProps)=>{
-    const [sets, setSets] = useState<Set[]>([{
-        reps:5,
-        exerciseName:"Bicep Curls",
-        weight:{
-            amount:50,
-            type:"kgs"
-        }
-    },
-    {
-            reps:7,
-            exerciseName:"Squats",
-            weight:{
-                amount:55,
-                type:"kgs"
-            }
-        }]);
+    const [sets, setSets] = useState<Set[]>(mockSets);
     const [showAddSetModal, setShowAddSetModal] = useState(false);
     const handleAddSet = (newSet: Set) => {
         setSets([...sets, newSet]);

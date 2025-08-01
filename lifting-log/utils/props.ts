@@ -1,4 +1,27 @@
-import { Set } from "./types";
+import { Set, Workout } from "./types";
+
+export interface WeeklyVolumeProps {
+    workouts: Workout[];
+}
+
+export interface TopFiveProps {
+    workouts: Workout[];
+}
+
+export interface LiftLogProps {
+    workouts: Workout[];
+    onDeleteWorkout: (workoutId:string) =>Promise<void>;
+    onEditWorkout: (workoutId:string) =>void;
+}
+export interface LiftCardProps {
+  entry:Workout;
+  onEdit : (workoutId:string) => void;
+}
+
+
+
+
+
 
 export interface AddLiftButtonProps {
   onPress: () => void;

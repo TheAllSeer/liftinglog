@@ -5,11 +5,12 @@ import { Ionicons } from '@expo/vector-icons';
 import { PieChart } from 'react-native-chart-kit';
 import { PieChartProps } from 'react-native-chart-kit/dist/PieChart';
 import {weeklyVolumeData} from '@/components/weeklyVolumeData'
-
+import { Workout } from '@/utils/types';
+import {WeeklyVolumeProps} from '@/utils/props'
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
-const WeeklyVolume = ()=>{
+const WeeklyVolume = ({workouts}:WeeklyVolumeProps)=>{
     const data:PieChartProps["data"] = weeklyVolumeData
     const piechartWidth = screenWidth * 0.91;
     const piechartHeight = screenHeight * 0.3;

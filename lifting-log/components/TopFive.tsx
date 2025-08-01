@@ -3,9 +3,9 @@ import {Text, View, ViewStyle, Dimensions} from 'react-native';
 import styles, {trademarks} from '@/styles/general';
 import {weeklyVolumeData} from '@/components/weeklyVolumeData'
 import TopFiveGroupCard from './TopFiveGroupCard';
-
+import {TopFiveProps} from '@/utils/props'
 const data = weeklyVolumeData;
-const TopFive = ()=>{
+const TopFive = ({workouts} : TopFiveProps)=>{
 
     return <View
     style={[styles.base, styles.homeCard, styles.flexCardCol]}>

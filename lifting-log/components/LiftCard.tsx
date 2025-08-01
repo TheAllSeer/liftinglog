@@ -1,17 +1,18 @@
 import React from 'react';
-import {Text, View, StyleSheet, Dimensions} from 'react-native';
+import {Text, View, StyleSheet, Dimensions, TouchableOpacity} from 'react-native';
 import styles, {trademarks} from '@/styles/general';
 
+import {LiftCardProps} from '@/utils/props'
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 
-const LiftCard = ({entry}:any)=>{
+const LiftCard = ({entry, onEdit}:LiftCardProps)=>{
 
-    return <View style = {[cardStyle.card]}>
+    return <TouchableOpacity style = {[cardStyle.card]} onPress={()=>{onEdit(entry.workoutId)}}>
         <Text style={[styles.baseText, cardStyle.cardText, cardStyle.nameStyle]}>{entry.workoutName}</Text>
-        <Text style={[styles.baseText, cardStyle.cardText, cardStyle.dateStyle]}>{entry.date}</Text>
-    </View>
+        <Text style={[styles.baseText, cardStyle.cardText, cardStyle.dateStyle]}>{entry.workoutDate.toLocaleDateString()}</Text>
+    </TouchableOpacity>
 }
 
 
