@@ -15,7 +15,7 @@ export interface LiftLogProps {
 }
 export interface LiftCardProps {
   entry:Workout;
-  onEdit : (workoutId:string) => void;
+  onEdit : () => void;
 }
 
 
@@ -28,9 +28,12 @@ export interface AddLiftButtonProps {
 }
 
 export interface AddWorkoutFormProps {
-    onClose: ()=>void;
-    isVisible:boolean;
-    onRequestClose : ()=>void;
+    onClose: () => void;
+    isVisible: boolean;
+    onRequestClose: () => void;
+    onAddWorkout: (workout: Workout) => void;
+    onEditWorkout: (workoutId: string, workout: Workout) => void;
+    editingWorkout?: Workout | null;
 }
 
 export interface SetsViewProps {

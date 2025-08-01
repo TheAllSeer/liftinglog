@@ -20,8 +20,8 @@ const LiftsLog = ({workouts, onEditWorkout}:LiftLogProps)=>{
         horizontal={true}
         showsHorizontalScrollIndicator={false}>
             {
-                weeklyData.map((workout, index)=>{
-                    return <LiftCard entry={workout} key={index} onEdit={() => onEditWorkout(workout.workoutId)}></LiftCard>
+                workouts.map((workout, index)=>{
+                    return <LiftCard entry={workout} key={workout.workoutId} onEdit={() => onEditWorkout(workout.workoutId)}></LiftCard>
                 })
             }
         </ScrollView>

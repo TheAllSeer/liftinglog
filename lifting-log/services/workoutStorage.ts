@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Workout } from '@/utils/types';
+import { weeklyData } from '@/utils/mockData';
 
 const workoutsDataKey = 'workoutsData';
 
@@ -9,7 +10,7 @@ export const workoutStorageService = {
     async loadWorkouts(): Promise<Workout[]> {
         try {
             const data = await AsyncStorage.getItem(workoutsDataKey);
-            return data ? JSON.parse(data) : [];
+            return data ? JSON.parse(data) : weeklyData;
         } catch (error) {
             console.error('Error loading workouts:', error);
             return [];

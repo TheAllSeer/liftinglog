@@ -179,11 +179,71 @@ const workout2: Workout = {
         }
     ]
 }
+const workout3: Workout = {
+    workoutId: "workout_003",
+    workoutDate: date2,
+    workoutName: "legs",
+    sets: [
+        // Squats
+        {
+            exerciseName: "squats",
+            isSuperSet: false,
+            reps: 8,
+            weight: { amount: 100, type: "kgs" }
+        },
+        {
+            exerciseName: "squats",
+            isSuperSet: false,
+            reps: 8,
+            weight: { amount: 100, type: "kgs" }
+        },
+        {
+            exerciseName: "squats",
+            isSuperSet: false,
+            reps: 8,
+            weight: { amount: 100, type: "kgs" }
+        },
+        // Leg extensions with leg curls superset
+        {
+            exerciseName: "leg extensions",
+            isSuperSet: true,
+            reps: 8,
+            weight: { amount: 40, type: "kgs" },
+            superSet: {
+                exerciseName: "leg curls",
+                reps: 8,
+                weight: { amount: 35, type: "kgs" }
+            }
+        },
+        {
+            exerciseName: "leg extensions",
+            isSuperSet: true,
+            reps: 8,
+            weight: { amount: 40, type: "kgs" },
+            superSet: {
+                exerciseName: "leg curls",
+                reps: 7,
+                weight: { amount: 35, type: "kgs" }
+            }
+        },
+        {
+            exerciseName: "leg extensions",
+            isSuperSet: true,
+            reps: 7,
+            weight: { amount: 40, type: "kgs" },
+            superSet: {
+                exerciseName: "leg curls",
+                reps: 6,
+                weight: { amount: 35, type: "kgs" }
+            }
+        }
+    ]
+}
 
 export const weeklyData = [
     workout2,
     workout1,
-    workout1,
+    workout3,
 ]
 
 export const workoutWithNoSuper: Workout = {

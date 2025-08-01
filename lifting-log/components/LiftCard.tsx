@@ -9,7 +9,7 @@ const screenHeight = Dimensions.get("window").height;
 
 const LiftCard = ({entry, onEdit}:LiftCardProps)=>{
 
-    return <TouchableOpacity style = {[cardStyle.card]} onPress={()=>{onEdit(entry.workoutId)}}>
+    return <TouchableOpacity style = {[cardStyle.card]} onPress={onEdit}>
         <Text style={[styles.baseText, cardStyle.cardText, cardStyle.nameStyle]}>{entry.workoutName}</Text>
         <Text style={[styles.baseText, cardStyle.cardText, cardStyle.dateStyle]}>{entry.workoutDate.toLocaleDateString()}</Text>
     </TouchableOpacity>

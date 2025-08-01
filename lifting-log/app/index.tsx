@@ -15,9 +15,10 @@ import BackDrop from '@/components/util_components/BackDrop';
 import { Workout } from '@/utils/types';
 import { useWorkouts } from '@/hooks/useWorkouts';
 
+import { weeklyData } from '@/utils/mockData';
 const Home = () => {
     const [isWorkoutFormVisible, setIsWorkoutFormVisible] = useState(false);
-    const [editingWorkout, setEditingWorkout] = useState< Workout | null>(null);
+    const [editingWorkout, setEditingWorkout] = useState<Workout | null>(null);
     const { 
         workouts, 
         isLoading, 
@@ -30,12 +31,17 @@ const Home = () => {
         setIsWorkoutFormVisible(false);
         setEditingWorkout(null);
     };
-    const HandleOnOpenForm = () => setIsWorkoutFormVisible(true);
 
-    const HandleAddWorkout = async (newWorkout:Workout)=>{
+    const HandleOnOpenForm = () => {
+        setEditingWorkout(null); // Clear any editing workout when opening for new workout
+        setIsWorkoutFormVisible(true);
+    };
+
+    const HandleAddWorkout = async (newWorkout: Workout) => {
         const success = await addWorkout(newWorkout);
         if (success) {
             setIsWorkoutFormVisible(false);
+            setEditingWorkout(null);
         }
     };
 
@@ -46,6 +52,7 @@ const Home = () => {
             setEditingWorkout(null);
         }
     };
+
     const HandleDeleteWorkout = async (workoutId: string) => {
         // Maybe show confirmation dialog first
         const success = await deleteWorkout(workoutId);
@@ -60,23 +67,42 @@ const Home = () => {
         }
     };
 
+    if (isLoading) {
+        return (
+            <View style={[styles.base, {flex: 1, justifyContent: 'center', alignItems: 'center'}]}>
+                <Text style={[styles.baseText]}>Loading workouts...</Text>
+            </View>
+        );
+    }
 
-    return <View style={[styles.base, {flex:1}]}>
-        <ScrollView>
-            <WeekNavigator></WeekNavigator>
-            <WeeklyVolume workouts={workouts}></WeeklyVolume>
-            <TopFive workouts={workouts}></TopFive>
-            <LiftsLog workouts={workouts} onDeleteWorkout={HandleDeleteWorkout}
-            onEditWorkout={HandleStartEdit}></LiftsLog>
-            <PersonalRecords></PersonalRecords>
-            <PersonalTrainer></PersonalTrainer>
-        </ScrollView>
-        {isWorkoutFormVisible && (
-          <AddWorkoutForm onRequestClose={HandleOnCloseForm} isVisible = {isWorkoutFormVisible} onClose={HandleOnCloseForm} />
-        )}
-        {!isWorkoutFormVisible && <AddLiftButton onPress={HandleOnOpenForm}></AddLiftButton>}
-      </View>;
-};
+    return <View style={[styles.base, {flex: 1}]}>
+            <ScrollView>
+                <WeekNavigator />
+                <WeeklyVolume workouts={workouts} />
+                <TopFive workouts={workouts} />
+                <LiftsLog 
+                    workouts={workouts} 
+                    onDeleteWorkout={HandleDeleteWorkout}
+                    onEditWorkout={HandleStartEdit}
+                />
+                <PersonalRecords/>
+                <PersonalTrainer />
+            </ScrollView>
 
-export default Home;
+            {isWorkoutFormVisible && (
+                <AddWorkoutForm 
+                    onRequestClose={HandleOnCloseForm} 
+                    isVisible={isWorkoutFormVisible} 
+                    onClose={HandleOnCloseForm}
+                    onAddWorkout={HandleAddWorkout}
+                    onEditWorkout={HandleEditWorkout}
+                    editingWorkout={editingWorkout}
+                />
+            )}
 
+            {!isWorkoutFormVisible && (
+                <AddLiftButton onPress={HandleOnOpenForm} />
+            )}
+        </View>
+    };
+    export default Home;
