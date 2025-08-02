@@ -14,9 +14,12 @@ import AddWorkoutForm from '@/components/form_components/AddWorkoutForm'
 import BackDrop from '@/components/util_components/BackDrop';
 import { Workout } from '@/utils/types';
 import { useWorkouts } from '@/hooks/useWorkouts';
-
 import { weeklyData } from '@/utils/mockData';
+import { sendLog } from '@/utils/utilFunctions';
+
+
 const Home = () => {
+    sendLog('Home initialized.')
     const [isWorkoutFormVisible, setIsWorkoutFormVisible] = useState(false);
     const [editingWorkout, setEditingWorkout] = useState<Workout | null>(null);
     const { 

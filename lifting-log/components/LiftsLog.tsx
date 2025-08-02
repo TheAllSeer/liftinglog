@@ -5,12 +5,14 @@ import LiftCard from './LiftCard';
 import { weeklyData } from '@/utils/mockData';
 
 import {LiftLogProps} from '@/utils/props'
+import { sendLog } from '@/utils/utilFunctions';
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 const LiftsLog = ({workouts, onEditWorkout}:LiftLogProps)=>{
     //youre not doing anything with onEdit and onDelete yet
+    sendLog(`LiftsLog created.`)
     return <View style = {[styles.homeCard, styles.flexCardCol]}>
         <View style={[styles.homeCardHeader]}>
             <Text style={[styles.baseText, styles.homeCardHeaderText]}>Lifting Log</Text>
