@@ -1,4 +1,6 @@
-export const groupColors = {
+import { MuscleGroup } from "./exercise_enums";
+
+export const groupColors:Partial<Record<MuscleGroup, string>> = {
    // Chest
    "chest": "#ff9933",
    
