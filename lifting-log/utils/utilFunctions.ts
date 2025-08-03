@@ -55,7 +55,7 @@ export function getTotalVolume(data:volumeData):number{
     return Object.values(data).reduce((sum, value) => sum + (value || 0), 0);
 };
 
-export function convertVolumeDataToPieChart(volumeData:volumeData, isPct?:true):PieChartProps["data"]{
+export function convertVolumeDataToPieChart(volumeData:volumeData, isPct?:boolean):PieChartProps["data"]{
     let pieChartData:PieChartProps["data"] = [];
     const legendFontColor = styles.baseText.color;
     const legendFontSize = 12;

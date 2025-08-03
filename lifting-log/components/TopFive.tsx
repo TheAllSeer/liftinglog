@@ -4,11 +4,14 @@ import styles, {trademarks} from '@/styles/general';
 import {weeklyVolumeData} from '@/components/weeklyVolumeData'
 import TopFiveGroupCard from './TopFiveGroupCard';
 import {TopFiveProps} from '@/utils/props'
+import { volumeData } from '@/utils/types';
+import { calculateWeeklyVolume, convertVolumeDataToPieChart } from '@/utils/utilFunctions';
+import { PieChartProps } from 'react-native-chart-kit/dist/PieChart';
 const data = weeklyVolumeData;
 
 const TopFive = ({workouts} : TopFiveProps)=>{
-
-    // function calculateTopFive
+    const weeklyVolumeData:volumeData = calculateWeeklyVolume(workouts);
+    const pieChartData:PieChartProps["data"] = convertVolumeDataToPieChart(weeklyVolumeData, false);
 
     return <View
     style={[styles.base, styles.homeCard, styles.flexCardCol]}>
@@ -17,7 +20,7 @@ const TopFive = ({workouts} : TopFiveProps)=>{
         </View>
         <View>
             {
-                data.slice(0, 5).map((entry, index)=>
+                pieChartData.slice(0, 5).map((entry, index)=>
                      (<TopFiveGroupCard entry={entry} key = {index}></TopFiveGroupCard>)
                 )
             }
