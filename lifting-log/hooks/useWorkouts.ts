@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { workoutStorageService } from '@/services/workoutStorage';
 import { Workout } from '@/utils/types';
-
+import { weeklyData } from '@/utils/mockData';
 export const useWorkouts = ()=>{
-    const [workouts, setWorkouts] = useState<Workout[]>([]);
+    const [workouts, setWorkouts] = useState<Workout[]>(weeklyData);
     const [isLoading, setIsLoading] = useState(true);
     useEffect(()=>{
         loadWorkouts();

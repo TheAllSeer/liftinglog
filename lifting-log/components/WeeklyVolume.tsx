@@ -17,7 +17,7 @@ const screenHeight = Dimensions.get("window").height;
 // const pieChartData:PieChartProps["data"] = convertVolumeDataToPieChart(weeklyVolumeData, true);
 
 const WeeklyVolume = ({workouts}:WeeklyVolumeProps)=>{
-    const weeklyVolumeData:volumeData = calculateWeeklyVolume(weeklyData);
+    const weeklyVolumeData:volumeData = calculateWeeklyVolume(workouts);
     const pieChartData:PieChartProps["data"] = convertVolumeDataToPieChart(weeklyVolumeData, true);
     const piechartWidth = screenWidth * 0.91;
     const piechartHeight = screenHeight * 0.3;
