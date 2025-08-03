@@ -52,7 +52,7 @@ const WeeklyVolume = ({workouts}:WeeklyVolumeProps)=>{
     return <View
     style={[styles.base, styles.homeCard, wvStyles]}>
         <View style={[{flexDirection:'column',alignItems:"center"}]}>
-            <View style={[styles.homeCardHeader]}>
+            <View style={[styles.homeCardHeader, {width:"105.5%"}]}>
                 <Text style={[styles.baseText, styles.homeCardHeaderText]}>Weekly Volume</Text>
             </View>
             <PieChart
@@ -74,7 +74,7 @@ const wvStyles:ViewStyle = {
     flexDirection:'row',
     alignItems: 'center',
     justifyContent: 'space-around',
-    maxWidth:screenWidth * 0.95 //this at 95 and piechartWidth at 91 aligns the header with the homeCard. 
+    maxWidth:screenWidth //this at 95 and piechartWidth at 91 aligns the header with the homeCard. 
     // i have no idea why. 
 }
 
