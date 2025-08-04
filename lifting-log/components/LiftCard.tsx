@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, StyleSheet, Dimensions, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, Dimensions, TouchableOpacity, Alert} from 'react-native';
 import styles, {trademarks} from '@/styles/general';
 
 import { sendLog } from '@/utils/utilFunctions';
@@ -8,9 +8,31 @@ const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 
-const LiftCard = ({entry, onEdit}:LiftCardProps)=>{
+const LiftCard = ({entry, onEdit, onDelete}:LiftCardProps)=>{
     sendLog(`Lift Card Created for workout [${entry.workoutName}] | workoutId: [${entry.workoutId}]`)
-    return <TouchableOpacity style = {[cardStyle.card]} onPress={onEdit}>
+    const handleLongPress = () => {
+        Alert.alert(
+        'Delete Workout',
+        'Are you sure you want to delete this workout?',
+        [
+            {
+            text: 'Cancel',
+            style: 'cancel',
+            },
+            {
+            text: 'Delete',
+            style: 'destructive',
+            onPress: () => onDelete(entry.workoutId),
+            },
+        ],
+        { cancelable: true }
+        );
+    };
+
+    
+
+
+    return <TouchableOpacity style = {[cardStyle.card]} onPress={()=>{onEdit(entry.workoutId)}} onLongPress={handleLongPress} delayLongPress={3000} activeOpacity={0.7}>
         <Text style={[styles.baseText, cardStyle.cardText, cardStyle.nameStyle]}>{entry.workoutName}</Text>
         <Text style={[styles.baseText, cardStyle.cardText, cardStyle.dateStyle]}>{entry.workoutDate.toString()}</Text>
     </TouchableOpacity>

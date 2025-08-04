@@ -11,11 +11,13 @@ export interface TopFiveProps {
 export interface LiftLogProps {
     workouts: Workout[];
     onDeleteWorkout: (workoutId:string) =>Promise<void>;
-    onEditWorkout: (workoutId:string) =>void;
+    onStartEditWorkout:(workoutId:string) =>void;
+    onEditWorkout: (workoutId: string, updatedWorkout: Workout) =>void;
 }
 export interface LiftCardProps {
   entry:Workout;
-  onEdit : () => void;
+  onEdit : (workoutId:string) => void;
+  onDelete : (workoutId:string)=>void;
 }
 
 

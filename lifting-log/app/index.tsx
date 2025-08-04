@@ -32,11 +32,11 @@ const Home = () => {
     } = useWorkouts();
     const HandleOnCloseForm = () => {
         setIsWorkoutFormVisible(false);
-        setEditingWorkout(null);
+        setEditingWorkout(null); // comment this to not lose all saving progress. 
     };
 
     const HandleOnOpenForm = () => {
-        setEditingWorkout(null); // Clear any editing workout when opening for new workout
+        setEditingWorkout(null);  // comment this to not lose all saving progress.
         setIsWorkoutFormVisible(true);
     };
 
@@ -86,7 +86,8 @@ const Home = () => {
                 <LiftsLog 
                     workouts={workouts} 
                     onDeleteWorkout={HandleDeleteWorkout}
-                    onEditWorkout={HandleStartEdit}
+                    onStartEditWorkout={HandleStartEdit}
+                    onEditWorkout = {HandleEditWorkout}
                 />
                 <PersonalRecords/>
                 <PersonalTrainer />
