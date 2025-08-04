@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { TextInput, StyleSheet, View, Dimensions, Pressable, ScrollView, Text } from 'react-native';
 import styles, {trademarks} from '@/styles/general';
-import {Set, SetsViewProps, WeightTypeSwitchProps, singleSetViewProps} from '@/components/props'
+import {SetsViewProps, WeightTypeSwitchProps, singleSetViewProps} from '@/utils/props'
+import { Set } from '@/utils/types';
 import KglbSwitch from './KglbSwitch';
 
 const screenWidth = Dimensions.get("window").width;

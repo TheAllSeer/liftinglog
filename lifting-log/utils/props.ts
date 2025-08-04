@@ -1,11 +1,39 @@
+import { Set, Workout } from "./types";
+
+export interface WeeklyVolumeProps {
+    workouts: Workout[];
+}
+
+export interface TopFiveProps {
+    workouts: Workout[];
+}
+
+export interface LiftLogProps {
+    workouts: Workout[];
+    onDeleteWorkout: (workoutId:string) =>Promise<void>;
+    onEditWorkout: (workoutId:string) =>void;
+}
+export interface LiftCardProps {
+  entry:Workout;
+  onEdit : () => void;
+}
+
+
+
+
+
+
 export interface AddLiftButtonProps {
   onPress: () => void;
 }
 
 export interface AddWorkoutFormProps {
-    onClose: ()=>void;
-    isVisible:boolean;
-    onRequestClose : ()=>void;
+    onClose: () => void;
+    isVisible: boolean;
+    onRequestClose: () => void;
+    onAddWorkout: (workout: Workout) => void;
+    onEditWorkout: (workoutId: string, workout: Workout) => void;
+    editingWorkout?: Workout | null;
 }
 
 export interface SetsViewProps {
@@ -14,14 +42,6 @@ export interface SetsViewProps {
     onSetUpdate: (index: number, updatedSet: Set) => void;
 }
 
-export interface Set {
-  weight: {
-    amount: number;
-    type: 'kgs' | 'lbs';
-  };
-  reps: number;
-  exerciseName:string;
-}
 
 export interface WeightTypeSwitchProps {
     weightType: Set["weight"]['type']

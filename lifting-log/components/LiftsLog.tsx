@@ -2,14 +2,17 @@ import React from 'react';
 import {Text, View, ViewStyle, Dimensions, StyleSheet, ScrollView} from 'react-native';
 import styles, {trademarks} from '@/styles/general';
 import LiftCard from './LiftCard';
-import { weeklyData } from './weeklyWorkoutsData';
+import { weeklyData } from '@/utils/mockData';
 
+import {LiftLogProps} from '@/utils/props'
+import { sendLog } from '@/utils/utilFunctions';
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
-const LiftsLog = ()=>{
-
+const LiftsLog = ({workouts, onEditWorkout}:LiftLogProps)=>{
+    //youre not doing anything with onEdit and onDelete yet
+    sendLog(`LiftsLog created.`)
     return <View style = {[styles.homeCard, styles.flexCardCol]}>
         <View style={[styles.homeCardHeader]}>
             <Text style={[styles.baseText, styles.homeCardHeaderText]}>Lifting Log</Text>
@@ -19,8 +22,8 @@ const LiftsLog = ()=>{
         horizontal={true}
         showsHorizontalScrollIndicator={false}>
             {
-                weeklyData.map((workout, index)=>{
-                    return <LiftCard entry={workout} key={index}></LiftCard>
+                workouts.map((workout, index)=>{
+                    return <LiftCard entry={workout} key={workout.workoutId} onEdit={() => onEditWorkout(workout.workoutId)}></LiftCard>
                 })
             }
         </ScrollView>

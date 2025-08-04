@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions, Pressable, Text } from 'react-native';
 import styles, { trademarks } from '@/styles/general';
-import { SaveWorkoutButtonProps } from '../props';
+import { SaveWorkoutButtonProps } from '../../utils/props';
 const screenWidth = Dimensions.get("window").width;
 
 

@@ -12,29 +12,100 @@ import PersonalTrainer from '@/components/PersonalTrainer';
 import NavButtons from '@/components/NavButtons'
 import AddWorkoutForm from '@/components/form_components/AddWorkoutForm'
 import BackDrop from '@/components/util_components/BackDrop';
+import { Workout } from '@/utils/types';
+import { useWorkouts } from '@/hooks/useWorkouts';
+import { weeklyData } from '@/utils/mockData';
+import { sendLog } from '@/utils/utilFunctions';
+
 
 const Home = () => {
-  const [isWorkoutFormVisible, setIsWorkoutFormVisible] = useState(false);
-  const HandleOnCloseForm = () => setIsWorkoutFormVisible(false)
-  const HandleOnOpenForm = () => setIsWorkoutFormVisible(true)
+    sendLog('Home initialized.')
+    const [isWorkoutFormVisible, setIsWorkoutFormVisible] = useState(false);
+    const [editingWorkout, setEditingWorkout] = useState<Workout | null>(null);
+    const { 
+        workouts, 
+        isLoading, 
+        addWorkout, 
+        editWorkout, 
+        deleteWorkout,
+        getWorkoutById 
+    } = useWorkouts();
+    const HandleOnCloseForm = () => {
+        setIsWorkoutFormVisible(false);
+        setEditingWorkout(null);
+    };
 
+    const HandleOnOpenForm = () => {
+        setEditingWorkout(null); // Clear any editing workout when opening for new workout
+        setIsWorkoutFormVisible(true);
+    };
 
+    const HandleAddWorkout = async (newWorkout: Workout) => {
+        const success = await addWorkout(newWorkout);
+        if (success) {
+            setIsWorkoutFormVisible(false);
+            setEditingWorkout(null);
+        }
+    };
 
-  return <View style={[styles.base, {flex:1}]}>
-        <ScrollView>
-            <WeekNavigator></WeekNavigator>
-            <WeeklyVolume></WeeklyVolume>
-            <TopFive></TopFive>
-            <LiftsLog></LiftsLog>
-            <PersonalRecords></PersonalRecords>
-            <PersonalTrainer></PersonalTrainer>
-        </ScrollView>
-        {isWorkoutFormVisible && (
-          <AddWorkoutForm onRequestClose={HandleOnCloseForm} isVisible = {isWorkoutFormVisible} onClose={HandleOnCloseForm} />
-        )}
-        {!isWorkoutFormVisible && <AddLiftButton onPress={HandleOnOpenForm}></AddLiftButton>}
-    </View>;
-};
+    const HandleEditWorkout = async (workoutId: string, updatedWorkout: Workout) => {
+        const success = await editWorkout(workoutId, updatedWorkout);
+        if (success) {
+            setIsWorkoutFormVisible(false);
+            setEditingWorkout(null);
+        }
+    };
 
-export default Home;
+    const HandleDeleteWorkout = async (workoutId: string) => {
+        // Maybe show confirmation dialog first
+        const success = await deleteWorkout(workoutId);
+        // Maybe show success/error message
+    };
 
+    const HandleStartEdit = (workoutId: string) => {
+        const workout = getWorkoutById(workoutId);
+        if (workout) {
+            setEditingWorkout(workout);
+            setIsWorkoutFormVisible(true);
+        }
+    };
+
+    if (isLoading) {
+        return (
+            <View style={[styles.base, {flex: 1, justifyContent: 'center', alignItems: 'center'}]}>
+                <Text style={[styles.baseText]}>Loading workouts...</Text>
+            </View>
+        );
+    }
+
+    return <View style={[styles.base, {flex: 1}]}>
+            <ScrollView>
+                <WeekNavigator />
+                <WeeklyVolume workouts={workouts} />
+                <TopFive workouts={workouts} />
+                <LiftsLog 
+                    workouts={workouts} 
+                    onDeleteWorkout={HandleDeleteWorkout}
+                    onEditWorkout={HandleStartEdit}
+                />
+                <PersonalRecords/>
+                <PersonalTrainer />
+            </ScrollView>
+
+            {isWorkoutFormVisible && (
+                <AddWorkoutForm 
+                    onRequestClose={HandleOnCloseForm} 
+                    isVisible={isWorkoutFormVisible} 
+                    onClose={HandleOnCloseForm}
+                    onAddWorkout={HandleAddWorkout}
+                    onEditWorkout={HandleEditWorkout}
+                    editingWorkout={editingWorkout}
+                />
+            )}
+
+            {!isWorkoutFormVisible && (
+                <AddLiftButton onPress={HandleOnOpenForm} />
+            )}
+        </View>
+    };
+    export default Home;

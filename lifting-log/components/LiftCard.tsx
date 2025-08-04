@@ -1,17 +1,19 @@
 import React from 'react';
-import {Text, View, StyleSheet, Dimensions} from 'react-native';
+import {Text, View, StyleSheet, Dimensions, TouchableOpacity} from 'react-native';
 import styles, {trademarks} from '@/styles/general';
 
+import { sendLog } from '@/utils/utilFunctions';
+import {LiftCardProps} from '@/utils/props'
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 
-const LiftCard = ({entry}:any)=>{
-
-    return <View style = {[cardStyle.card]}>
+const LiftCard = ({entry, onEdit}:LiftCardProps)=>{
+    sendLog(`Lift Card Created for workout [${entry.workoutName}] | workoutId: [${entry.workoutId}]`)
+    return <TouchableOpacity style = {[cardStyle.card]} onPress={onEdit}>
         <Text style={[styles.baseText, cardStyle.cardText, cardStyle.nameStyle]}>{entry.workoutName}</Text>
-        <Text style={[styles.baseText, cardStyle.cardText, cardStyle.dateStyle]}>{entry.date}</Text>
-    </View>
+        <Text style={[styles.baseText, cardStyle.cardText, cardStyle.dateStyle]}>{entry.workoutDate.toString()}</Text>
+    </TouchableOpacity>
 }
 
 

@@ -4,13 +4,21 @@ import styles, {trademarks} from '@/styles/general';
 import { Ionicons } from '@expo/vector-icons';
 import { PieChart } from 'react-native-chart-kit';
 import { PieChartProps } from 'react-native-chart-kit/dist/PieChart';
-import {weeklyVolumeData} from '@/components/weeklyVolumeData'
-
+// import {weeklyVolumeData} from '@/components/weeklyVolumeData'
+import { volumeData, Workout } from '@/utils/types';
+import {WeeklyVolumeProps} from '@/utils/props'
+import { weeklyData } from '@/utils/mockData';
+import {calculateWeeklyVolume, calculateWorkoutVolume, convertVolumeDataToPieChart, mergeTwoVolumeObjects, sendLog} from '@/utils/utilFunctions'
+import { Exercise, MuscleGroup } from '@/utils/exercise_enums';
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
-const WeeklyVolume = ()=>{
-    const data:PieChartProps["data"] = weeklyVolumeData
+// const weeklyVolumeData:volumeData = calculateWeeklyVolume(weeklyData);
+// const pieChartData:PieChartProps["data"] = convertVolumeDataToPieChart(weeklyVolumeData, true);
+
+const WeeklyVolume = ({workouts}:WeeklyVolumeProps)=>{
+    const weeklyVolumeData:volumeData = calculateWeeklyVolume(workouts);
+    const pieChartData:PieChartProps["data"] = convertVolumeDataToPieChart(weeklyVolumeData, true);
     const piechartWidth = screenWidth * 0.91;
     const piechartHeight = screenHeight * 0.3;
     const chartConfig = {
@@ -22,11 +30,11 @@ const WeeklyVolume = ()=>{
     return <View
     style={[styles.base, styles.homeCard, wvStyles]}>
         <View style={[{flexDirection:'column',alignItems:"center"}]}>
-            <View style={[styles.homeCardHeader]}>
+            <View style={[styles.homeCardHeader, {width:"105.5%"}]}>
                 <Text style={[styles.baseText, styles.homeCardHeaderText]}>Weekly Volume</Text>
             </View>
             <PieChart
-             data={data}
+             data={pieChartData}
              width={piechartWidth}
              height={piechartHeight}
              accessor="population"
@@ -44,7 +52,7 @@ const wvStyles:ViewStyle = {
     flexDirection:'row',
     alignItems: 'center',
     justifyContent: 'space-around',
-    maxWidth:screenWidth * 0.95 //this at 95 and piechartWidth at 91 aligns the header with the homeCard. 
+    maxWidth:screenWidth //this at 95 and piechartWidth at 91 aligns the header with the homeCard. 
     // i have no idea why. 
 }
 
