@@ -7,6 +7,7 @@ import { Set } from '@/utils/types';
 import KglbSwitch from './KglbSwitch';
 import AddSet from './AddSet';
 import SingleSetView from './SingleSetView'
+import ExerciseDropdown from '@/utils/ExerciseDropdown';
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -22,9 +23,23 @@ const SetsView = ({sets, onAddSet, onSetUpdate}:SetsViewProps)=>{
             <View key={index}>
                 {(!sets?.[index-1] || sets?.[index-1].exerciseName !== set.exerciseName)
                 && (<View style={{alignItems:'center'}}>
-                    <Text style={[styles.baseText, svStyle.exerciseNameHeader]}>{set.exerciseName}</Text>
+                    
+
+
+                    {set.reps === 0 && set.weight.amount === 0 ? (
+                        <ExerciseDropdown 
+                            selectedExercise={set.exerciseName}
+                            onExerciseChange={(exercise) => {
+                                const updatedSet = {...set, exerciseName: exercise};
+                                handleSetUpdate(index, updatedSet);
+                            }}
+                        />
+                    ) : (
+                        <Text style={[styles.baseText, svStyle.exerciseNameHeader]}>{set.exerciseName}</Text>
+                    )}
                 </View>)
                 }
+                
             <SingleSetView set={set} key={'_' + index.toString()} setIndex={index} onSetUpdate={handleSetUpdate}>
             </SingleSetView>
             </View>
