@@ -1,5 +1,10 @@
 import { Set, Workout } from "./types";
 
+
+export interface WeeklyNavigatorProps {
+  date: Date;
+  setDate: (date: Date) => void;
+}
 export interface WeeklyVolumeProps {
     workouts: Workout[];
 }

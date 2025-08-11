@@ -55,7 +55,7 @@ export function getTotalVolume(data:volumeData):number{
     return Object.values(data).reduce((sum, value) => sum + (value || 0), 0);
 };
 
-export function convertVolumeDataToPieChart(volumeData:volumeData, isPct?:boolean):PieChartProps["data"]{
+export function convertVolumeDataToPieChart(volumeData: volumeData, isPct?: boolean): PieChartProps["data"]{
     let pieChartData:PieChartProps["data"] = [];
     const legendFontColor = styles.baseText.color;
     const legendFontSize = 12;
@@ -72,5 +72,24 @@ export function convertVolumeDataToPieChart(volumeData:volumeData, isPct?:boolea
             legendFontSize
         });
     })
+    pieChartData.sort((a, b) => b.population - a.population);
     return pieChartData;
 }
+
+// date related functions
+
+export function getWeekRangeFromDate(date: Date): { start: Date; end: Date } {
+    const inputDate = new Date(date);
+    // Sunday = 0, Saturday = 6 and everything in between
+    const dayOfWeek = inputDate.getDay();
+
+    const start = new Date(inputDate);
+    start.setDate(inputDate.getDate() - dayOfWeek);
+    start.setHours(0, 0, 0, 0);
+    const end = new Date(start);
+    end.setDate(start.getDate() + 6);
+    end.setHours(23, 59, 59, 999);
+    
+    return { start, end };
+}
+

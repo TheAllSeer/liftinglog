@@ -32,7 +32,7 @@ const LiftCard = ({entry, onEdit, onDelete}:LiftCardProps)=>{
     
 
 
-    return <TouchableOpacity style = {[cardStyle.card]} onPress={()=>{onEdit(entry.workoutId)}} onLongPress={handleLongPress} delayLongPress={3000} activeOpacity={0.7}>
+    return <TouchableOpacity style = {[cardStyle.card]} onPress={()=>{onEdit(entry.workoutId)}} onLongPress={handleLongPress} delayLongPress={2000} activeOpacity={0.7}>
         <Text style={[styles.baseText, cardStyle.cardText, cardStyle.nameStyle]}>{entry.workoutName}</Text>
         <Text style={[styles.baseText, cardStyle.cardText, cardStyle.dateStyle]}>{entry.workoutDate.toString()}</Text>
     </TouchableOpacity>
