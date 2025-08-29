@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Dimensions, Pressable, ScrollView, Text, Modal } from 'react-native';
+import { StyleSheet, View, Dimensions, Pressable, ScrollView, Text, Modal, TextInput } from 'react-native';
 import styles, {trademarks} from '@/styles/general';
 import { Set, Workout } from '@/utils/types';
 import AddSetModal from './AddSetModal';
 import { mockSets } from '@/utils/mockData';
 import SetsView from './SetsView';
 import SaveWorkout from './SaveWorkout';
+import { Exercise } from '@/utils/exercise_enums';
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -17,6 +18,7 @@ interface AddWorkoutFormProps {
     onAddWorkout: (workout: Workout) => void;
     onEditWorkout: (workoutId: string, workout: Workout) => void;
     editingWorkout?: Workout | null;
+    // change this to the props file ew
 }
 
 const AddWorkoutForm = ({
@@ -30,7 +32,7 @@ const AddWorkoutForm = ({
     
     const [sets, setSets] = useState<Set[]>(mockSets);
     const [showAddSetModal, setShowAddSetModal] = useState(false);
-    const [workoutName, setWorkoutName] = useState('');
+    const [workoutName, setWorkoutName] = useState(editingWorkout?.workoutName || '');
 
     // Pre-fill form when editing, reset when adding new
     useEffect(() => {
@@ -45,7 +47,13 @@ const AddWorkoutForm = ({
         }
     }, [editingWorkout]);
 
-    const handleAddSet = (newSet: Set) => {
+    const handleAddSet = () => {
+        const newSet: Set = {
+            weight: { amount: 0, type: 'kgs' },
+            reps: 0,
+            exerciseName: Exercise.BENCH_PRESS, // or whatever default exercise you want
+            isSuperSet: false
+        };
         setSets([...sets, newSet]);
     };
 
@@ -101,16 +109,21 @@ const AddWorkoutForm = ({
                         </View>
                         
                         {/* You might want to add a workout name input here */}
-                        <View style={{paddingHorizontal: 16, marginBottom: 16}}>
-                            <Text style={[styles.baseText, {fontSize: 18, marginBottom: 8}]}>
-                                {workoutName || 'Workout Name'}
-                            </Text>
+                        <View style={formStyles.workoutNameContainer}>
+                        <Text style={[styles.baseText, formStyles.label]}>Workout Name</Text>
+                        <TextInput
+                            style={[styles.baseText, formStyles.workoutNameInput]}
+                            value={workoutName}
+                            onChangeText={setWorkoutName}
+                            placeholder="Enter workout name..."
+                            placeholderTextColor="#808080"
+                        />
                         </View>
 
                         <SetsView 
                             sets={sets} 
                             onSetUpdate={handleSetUpdate} 
-                            onAddSet={() => {}} 
+                            onAddSet={handleAddSet} 
                         />
                     </ScrollView>
                     
@@ -143,5 +156,22 @@ const wfStyles = StyleSheet.create({
         zIndex:2147483647,
     }, 
 });
-
+const formStyles = StyleSheet.create({
+  workoutNameContainer: {
+    padding: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: trademarks.white,
+  },
+  label: {
+    fontSize: 14,
+    marginBottom: 8,
+  },
+  workoutNameInput: {
+    borderWidth: 1,
+    borderColor: trademarks.white,
+    borderRadius: 8,
+    padding: 12,
+    fontSize: 16,
+  },
+});
 export default AddWorkoutForm;

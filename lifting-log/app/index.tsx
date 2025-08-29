@@ -11,17 +11,19 @@ import PersonalRecords from '@/components/PersonalRecords';
 import PersonalTrainer from '@/components/PersonalTrainer';
 import NavButtons from '@/components/NavButtons'
 import AddWorkoutForm from '@/components/form_components/AddWorkoutForm'
-import BackDrop from '@/components/util_components/BackDrop';
 import { Workout } from '@/utils/types';
 import { useWorkouts } from '@/hooks/useWorkouts';
 import { weeklyData } from '@/utils/mockData';
 import { sendLog } from '@/utils/utilFunctions';
+import { getWeekRangeFromDate } from '@/utils/utilFunctions';
 
 
 const Home = () => {
+    // const now = new Date();
     sendLog('Home initialized.')
     const [isWorkoutFormVisible, setIsWorkoutFormVisible] = useState(false);
     const [editingWorkout, setEditingWorkout] = useState<Workout | null>(null);
+    const [currentDate, setCurrentDate] = useState<Date>(new Date());
     const { 
         workouts, 
         isLoading, 
@@ -30,13 +32,23 @@ const Home = () => {
         deleteWorkout,
         getWorkoutById 
     } = useWorkouts();
+
+    const getFilteredWorkouts = ()=>{
+        const weekRange = getWeekRangeFromDate(currentDate);
+        return workouts.filter(workout => {
+            const workoutDate = new Date(workout.workoutDate); 
+            return workoutDate >= weekRange.start && workoutDate <= weekRange.end;
+        });
+    }
+    const filteredWorkouts = getFilteredWorkouts();
+
     const HandleOnCloseForm = () => {
         setIsWorkoutFormVisible(false);
-        setEditingWorkout(null);
+        setEditingWorkout(null); // comment this to not lose all saving progress. 
     };
 
     const HandleOnOpenForm = () => {
-        setEditingWorkout(null); // Clear any editing workout when opening for new workout
+        setEditingWorkout(null);  // comment this to not lose all saving progress.
         setIsWorkoutFormVisible(true);
     };
 
@@ -70,6 +82,7 @@ const Home = () => {
         }
     };
 
+
     if (isLoading) {
         return (
             <View style={[styles.base, {flex: 1, justifyContent: 'center', alignItems: 'center'}]}>
@@ -78,15 +91,17 @@ const Home = () => {
         );
     }
 
+
     return <View style={[styles.base, {flex: 1}]}>
             <ScrollView>
-                <WeekNavigator />
-                <WeeklyVolume workouts={workouts} />
-                <TopFive workouts={workouts} />
+                <WeekNavigator date={currentDate} setDate={setCurrentDate}/>
+                <WeeklyVolume workouts={filteredWorkouts} />
+                <TopFive workouts={filteredWorkouts} />
                 <LiftsLog 
-                    workouts={workouts} 
+                    workouts={filteredWorkouts} 
                     onDeleteWorkout={HandleDeleteWorkout}
-                    onEditWorkout={HandleStartEdit}
+                    onStartEditWorkout={HandleStartEdit}
+                    onEditWorkout = {HandleEditWorkout}
                 />
                 <PersonalRecords/>
                 <PersonalTrainer />

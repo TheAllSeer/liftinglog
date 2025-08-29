@@ -51,7 +51,7 @@ const SingleSetView = ({set, setIndex, onSetUpdate}:singleSetViewProps)=>{
                         onRepsChange(numValue);
                     }}
                     keyboardType="numeric"
-                    placeholder="0"
+                    placeholder=""
                     placeholderTextColor={trademarks.white}
                 />
                 <TextInput
@@ -62,7 +62,7 @@ const SingleSetView = ({set, setIndex, onSetUpdate}:singleSetViewProps)=>{
                         onWeightAmountChange(numValue);
                     }}
                     keyboardType="numeric"
-                    placeholder="0"
+                    placeholder=""
                     placeholderTextColor={trademarks.white}
                 />
                 <KglbSwitch weightType={set.weight.type} onTypeChange={onWeightTypeChange} ></KglbSwitch>
