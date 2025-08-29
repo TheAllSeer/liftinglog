@@ -11,7 +11,6 @@ import PersonalRecords from '@/components/PersonalRecords';
 import PersonalTrainer from '@/components/PersonalTrainer';
 import NavButtons from '@/components/NavButtons'
 import AddWorkoutForm from '@/components/form_components/AddWorkoutForm'
-import BackDrop from '@/components/util_components/BackDrop';
 import { Workout } from '@/utils/types';
 import { useWorkouts } from '@/hooks/useWorkouts';
 import { weeklyData } from '@/utils/mockData';
