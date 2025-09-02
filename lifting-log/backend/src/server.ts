@@ -188,7 +188,7 @@ app.put('/api/workouts/:id', async (req, res)=>{
         await connection.beginTransaction();
         const {id} = req.params;
         const { workoutName, workoutDate, sets } = req.body;
-        const [workoutRows] = await connection.execute(API_QUERIES, [id])
+        const [workoutRows] = await connection.execute(API_QUERIES.GET_WORKOUT_BY_ID, [id])
         if (workoutRows.length === 0) {
             return res.status(404).json({ error: 'Workout not found' });
         }
