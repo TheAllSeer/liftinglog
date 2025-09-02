@@ -132,12 +132,4 @@ export enum API_QUERIES {
     DELETE_SUPERSETS_BY_WORKOUT_ID = `DELETE FROM super_sets WHERE set_id IN (SELECT set_id FROM sets WHERE workout_id = ?)`,
     DELETE_SETS_BY_WORKOUT_ID = `DELETE FROM sets WHERE workout_id = ?`,
     SET_WORKOUT_DELETED = `UPDATE workouts SET is_deleted = TRUE WHERE workout_id = ?`,
-    
-
-    
-
-
-
-    
-
 }
