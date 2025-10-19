@@ -25,7 +25,7 @@ const AddWorkoutForm = ({
     editingWorkout
 }: AddWorkoutFormProps) => {
     
-    const [sets, setSets] = useState<Set[]>(mockSets);
+    const [sets, setSets] = useState<Set[]>([]);
     const [showAddSetModal, setShowAddSetModal] = useState(false);
     const [workoutName, setWorkoutName] = useState(editingWorkout?.workoutName || '');
 
@@ -37,7 +37,7 @@ const AddWorkoutForm = ({
             setWorkoutName(editingWorkout.workoutName);
         } else {
             // We're adding new - reset to defaults
-            setSets(mockSets);
+            setSets([]);
             setWorkoutName('');
         }
     }, [editingWorkout]);
@@ -65,7 +65,7 @@ const AddWorkoutForm = ({
             setWorkoutName(editingWorkout.workoutName);
         } else {
             // Reset to empty/default
-            setSets(mockSets);
+            setSets([]);
             setWorkoutName('');
         }
     };
