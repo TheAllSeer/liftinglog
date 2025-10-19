@@ -15,18 +15,13 @@ interface AddWorkoutFormProps {
     onClose: () => void;
     isVisible: boolean;
     onRequestClose: () => void;
-    onAddWorkout: (workout: Workout) => void;
-    onEditWorkout: (workoutId: string, workout: Workout) => void;
     editingWorkout?: Workout | null;
-    // change this to the props file ew
 }
 
 const AddWorkoutForm = ({
     onClose, 
     isVisible, 
     onRequestClose, 
-    onAddWorkout, 
-    onEditWorkout, 
     editingWorkout
 }: AddWorkoutFormProps) => {
     
@@ -51,7 +46,7 @@ const AddWorkoutForm = ({
         const newSet: Set = {
             weight: { amount: 0, type: 'kgs' },
             reps: 0,
-            exerciseName: Exercise.BENCH_PRESS, // or whatever default exercise you want
+            exerciseName: Exercise.BENCH_PRESS,
             isSuperSet: false
         };
         setSets([...sets, newSet]);
@@ -61,24 +56,6 @@ const AddWorkoutForm = ({
         setSets(prevSets => 
             prevSets.map((set, i) => i === index ? updatedSet : set)
         );
-    };
-
-    const handleSave = () => {
-        // Create workout object from current form data
-        const workoutData: Workout = {
-            workoutId: editingWorkout?.workoutId || `workout_${Date.now()}`, // Use existing ID or generate new
-            workoutName: workoutName || 'Untitled Workout',
-            workoutDate: editingWorkout?.workoutDate || new Date(), // Keep original date if editing
-            sets: sets
-        };
-
-        if (editingWorkout) {
-            // We're editing an existing workout
-            onEditWorkout(editingWorkout.workoutId, workoutData);
-        } else {
-            // We're adding a new workout
-            onAddWorkout(workoutData);
-        }
     };
 
     const handleReset = () => {
@@ -108,16 +85,15 @@ const AddWorkoutForm = ({
                             </Text>
                         </View>
                         
-                        {/* You might want to add a workout name input here */}
                         <View style={formStyles.workoutNameContainer}>
-                        <Text style={[styles.baseText, formStyles.label]}>Workout Name</Text>
-                        <TextInput
-                            style={[styles.baseText, formStyles.workoutNameInput]}
-                            value={workoutName}
-                            onChangeText={setWorkoutName}
-                            placeholder="Enter workout name..."
-                            placeholderTextColor="#808080"
-                        />
+                            <Text style={[styles.baseText, formStyles.label]}>Workout Name</Text>
+                            <TextInput
+                                style={[styles.baseText, formStyles.workoutNameInput]}
+                                value={workoutName}
+                                onChangeText={setWorkoutName}
+                                placeholder="Enter workout name..."
+                                placeholderTextColor="#808080"
+                            />
                         </View>
 
                         <SetsView 
@@ -129,7 +105,7 @@ const AddWorkoutForm = ({
                     
                     <SaveWorkout 
                         onReset={handleReset} 
-                        onSave={handleSave}
+                        onSave={onClose}
                     />
                 </Pressable>
             </Pressable>
@@ -156,6 +132,7 @@ const wfStyles = StyleSheet.create({
         zIndex:2147483647,
     }, 
 });
+
 const formStyles = StyleSheet.create({
   workoutNameContainer: {
     padding: 20,
@@ -174,4 +151,5 @@ const formStyles = StyleSheet.create({
     fontSize: 16,
   },
 });
+
 export default AddWorkoutForm;

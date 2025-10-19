@@ -10,8 +10,7 @@ import { sendLog } from '@/utils/utilFunctions';
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
-const LiftsLog = ({workouts, onStartEditWorkout, onEditWorkout, onDeleteWorkout}:LiftLogProps)=>{
-    //youre not doing anything with onEdit and onDelete yet
+const LiftsLog = ({workouts}:LiftLogProps)=>{
     sendLog(`LiftsLog created.`)
 
     return <View style = {[styles.homeCard, styles.flexCardCol]}>
@@ -24,7 +23,7 @@ const LiftsLog = ({workouts, onStartEditWorkout, onEditWorkout, onDeleteWorkout}
         showsHorizontalScrollIndicator={false}>
             {
                 workouts.map((workout, index)=>{
-                    return <LiftCard entry={workout} key={workout.workoutId} onDelete={()=>{onDeleteWorkout(workout.workoutId)}} onEdit={()=>{onStartEditWorkout(workout.workoutId)}}></LiftCard>
+                    return <LiftCard entry={workout} key={workout.workoutId} onDelete={()=>{}} onEdit={()=>{}}></LiftCard>
                 })
             }
         </ScrollView>

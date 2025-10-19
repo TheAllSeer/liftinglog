@@ -15,20 +15,13 @@ export interface TopFiveProps {
 
 export interface LiftLogProps {
     workouts: Workout[];
-    onDeleteWorkout: (workoutId:string) =>Promise<void>;
-    onStartEditWorkout:(workoutId:string) =>void;
-    onEditWorkout: (workoutId: string, updatedWorkout: Workout) =>void;
 }
+
 export interface LiftCardProps {
   entry:Workout;
   onEdit : (workoutId:string) => void;
   onDelete : (workoutId:string)=>void;
 }
-
-
-
-
-
 
 export interface AddLiftButtonProps {
   onPress: () => void;
@@ -38,8 +31,6 @@ export interface AddWorkoutFormProps {
     onClose: () => void;
     isVisible: boolean;
     onRequestClose: () => void;
-    onAddWorkout: (workout: Workout) => void;
-    onEditWorkout: (workoutId: string, workout: Workout) => void;
     editingWorkout?: Workout | null;
 }
 
@@ -48,7 +39,6 @@ export interface SetsViewProps {
     onAddSet:()=>void;
     onSetUpdate: (index: number, updatedSet: Set) => void;
 }
-
 
 export interface WeightTypeSwitchProps {
     weightType: Set["weight"]['type']
@@ -70,7 +60,6 @@ export interface SaveWorkoutButtonProps {
   onReset: () => void;
   isLoading?: boolean;
 }
-
 
 export interface singleSetViewProps {
   set:Set;

@@ -1,8 +1,0 @@
-sensitives.js
-
-node_modules/
-.env
-.DS_Store
-*.log
-sensitives.ts 
-sensitives.js
