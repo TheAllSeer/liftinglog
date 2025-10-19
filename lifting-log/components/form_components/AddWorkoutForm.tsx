@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Dimensions, Pressable, ScrollView, Text, Modal, TextInput } from 'react-native';
 import styles, {trademarks} from '@/styles/general';
 import { Set, Workout } from '@/utils/types';
-import AddSetModal from './AddSetModal';
 import { mockSets } from '@/utils/mockData';
 import SetsView from './SetsView';
 import SaveWorkout from './SaveWorkout';
