@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 
 import pool from './db';
-import { CREATE_WORKOUTS_TABLE, GET_ALL_WORKOUTS, INSERT_WORKOUT } from './queries';
+import { CREATE_WORKOUTS_TABLE, CREATE_SETS_TABLE, GET_ALL_WORKOUTS, INSERT_WORKOUT } from './queries';
 import { testConnection } from './db';
 
 dotenv.config();
@@ -51,9 +51,11 @@ app.post('/workouts', async (req:Request, res:Response) =>{
 
 
 
+
 const initDb = async () => {
     try {
         await pool.query(CREATE_WORKOUTS_TABLE);
+        await pool.query(CREATE_SETS_TABLE);
         console.log('✓ Database tables initialized');
     } catch (error) {
         console.error('✗ Database initialization failed:', error);
