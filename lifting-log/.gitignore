@@ -40,3 +40,6 @@ app-example
 
 
 sensitives
+.env
+
+api.config.ts

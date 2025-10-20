@@ -6,21 +6,16 @@ import { mockSets } from '@/utils/mockData';
 import SetsView from './SetsView';
 import SaveWorkout from './SaveWorkout';
 import { Exercise } from '@/utils/exercise_enums';
+import { AddWorkoutFormProps } from '@/utils/props';
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
-
-interface AddWorkoutFormProps {
-    onClose: () => void;
-    isVisible: boolean;
-    onRequestClose: () => void;
-    editingWorkout?: Workout | null;
-}
 
 const AddWorkoutForm = ({
     onClose, 
     isVisible, 
     onRequestClose, 
+    onAddWorkout,
     editingWorkout
 }: AddWorkoutFormProps) => {
     
@@ -68,6 +63,15 @@ const AddWorkoutForm = ({
             setWorkoutName('');
         }
     };
+    const handleSave = () => {
+        const workoutData: Workout = {
+            workoutId: `workout_${Date.now()}`,
+            workoutName: workoutName || 'Untitled Workout',
+            workoutDate: new Date(),
+            sets: [] // Empty sets for now
+        };
+        onAddWorkout(workoutData);
+    };
 
     return (
         <Modal 
@@ -104,7 +108,7 @@ const AddWorkoutForm = ({
                     
                     <SaveWorkout 
                         onReset={handleReset} 
-                        onSave={onClose}
+                        onSave={handleSave}
                     />
                 </Pressable>
             </Pressable>

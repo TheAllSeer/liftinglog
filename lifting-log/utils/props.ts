@@ -31,6 +31,7 @@ export interface AddWorkoutFormProps {
     onClose: () => void;
     isVisible: boolean;
     onRequestClose: () => void;
+    onAddWorkout: (workout: Workout) => void;
     editingWorkout?: Workout | null;
 }
 
