@@ -37,3 +37,14 @@ export const CREATE_SETS_TABLE = `
         FOREIGN KEY (parent_set_id) REFERENCES sets(setId) ON DELETE SET NULL
     )
 `;
+export const INSERT_SET = `
+    INSERT INTO sets (setId, workoutId, exerciseName, reps, weight_amount, weight_type, set_order, is_superset, parent_set_id)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+`;
+
+export const GET_SETS_BY_WORKOUT = `
+    SELECT setId, workoutId, exerciseName, reps, weight_amount, weight_type, set_order, is_superset, parent_set_id
+    FROM sets
+    WHERE workoutId = ?
+    ORDER BY set_order ASC
+`;
