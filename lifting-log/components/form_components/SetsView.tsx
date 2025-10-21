@@ -24,9 +24,6 @@ const SetsView = ({sets, onAddSet, onSetUpdate}:SetsViewProps)=>{
             <View key={index}>
                 {(!sets?.[index-1] || sets?.[index-1].exerciseName !== set.exerciseName || set.exerciseName === Exercise.DEFAULT)
                 && (<View style={{alignItems:'center'}}>
-                    
-
-
                     <ExerciseDropdown 
                         selectedExercise={set.exerciseName}
                         onExerciseChange={(exercise) => {
