@@ -1,5 +1,5 @@
-import { IP_ADDRESS } from "@/config/api.config";
-const API_BASE_URL = `http://${IP_ADDRESS}:3000`;
+import { IP_ADDRESS, IP_ADDRESS_TRAIN } from "@/config/api.config";
+const API_BASE_URL = `http://${IP_ADDRESS_TRAIN}:3000`;
 
 export const fetchWorkouts = async () => {
     try {
@@ -15,13 +15,14 @@ export const fetchWorkouts = async () => {
     }
 };
 
-export const addWorkout = async (workout: { workoutId: string; workoutName: string; workoutDate: Date }) => {
+export const addWorkout = async (workout: { workoutId: string; workoutName: string; workoutDate: Date; sets:any[] }) => {
     const formattedDate = workout.workoutDate.toISOString().slice(0, 19).replace('T', ' ');
     try{
         const reqBody = {
             workoutId: workout.workoutId,
             workoutName: workout.workoutName,
             workoutDate: formattedDate,
+            sets:workout.sets
         };
         const response = await fetch(`${API_BASE_URL}/workouts`, {
             method: 'POST',

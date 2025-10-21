@@ -68,7 +68,7 @@ const AddWorkoutForm = ({
             workoutId: `workout_${Date.now()}`,
             workoutName: workoutName || 'Untitled Workout',
             workoutDate: new Date(),
-            sets: [] // Empty sets for now
+            sets: sets
         };
         onAddWorkout(workoutData);
     };

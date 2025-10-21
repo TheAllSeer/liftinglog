@@ -79,7 +79,7 @@ app.post('/workouts', async (req: Request, res: Response) => {
             for (let i = 0; i < sets.length; i++) {
                 const set = sets[i];
                 const setId = `set_${Date.now()}_${i}`;
-                
+                console.log('SET IN ADDWORKOUT', set);
                 await connection.query(INSERT_SET, [
                     setId,
                     workoutId,
