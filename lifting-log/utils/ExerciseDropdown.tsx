@@ -21,7 +21,9 @@ const ExerciseDropdown = ({ selectedExercise, onExerciseChange }: ExerciseDropdo
         style={dropdownStyles.selector}
         onPress={() => setIsOpen(true)}
       >
-        <Text style={[styles.baseText]}>{selectedExercise}</Text>
+        <Text style={[styles.baseText, selectedExercise === Exercise.DEFAULT && { opacity: 0.5 }]}>
+          {selectedExercise === Exercise.DEFAULT ? "Enter your exercise here..." : selectedExercise}
+        </Text>
         <Text style={[styles.baseText]}>▼</Text>
       </TouchableOpacity>
 

@@ -40,7 +40,7 @@ const AddWorkoutForm = ({
         const newSet: Set = {
             weight: { amount: 0, type: 'kgs' },
             reps: 0,
-            exerciseName: Exercise.BENCH_PRESS,
+            exerciseName: Exercise.DEFAULT,
             isSuperSet: false
         };
         setSets([...sets, newSet]);
@@ -64,6 +64,12 @@ const AddWorkoutForm = ({
         }
     };
     const handleSave = () => {
+        const hasInvalidExercise = sets.some(set => set.exerciseName === Exercise.DEFAULT);
+    
+        if (hasInvalidExercise) {
+            alert('Please select an exercise for all sets before saving');
+            return; // Don't save, don't close, don't lose progress
+        }
         const workoutData: Workout = {
             workoutId: `workout_${Date.now()}`,
             workoutName: workoutName || 'Untitled Workout',
