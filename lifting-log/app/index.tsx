@@ -14,6 +14,7 @@ import { Workout } from '@/utils/types';
 import { weeklyData } from '@/utils/mockData';
 import { sendLog } from '@/utils/utilFunctions';
 import { getWeekRangeFromDate } from '@/utils/utilFunctions';
+import AppHeader from "@/components/AppHeader";
 
 import { fetchWorkouts, addWorkout } from '@/utils/api';
 
@@ -76,6 +77,7 @@ const Home = () => {
     };
 
     return <View style={[styles.base, {flex: 1}]}>
+        <AppHeader />
             <ScrollView>
                 <WeekNavigator date={currentDate} setDate={setCurrentDate}/>
                 <WeeklyVolume workouts={filteredWorkouts} />

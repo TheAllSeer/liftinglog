@@ -1,5 +1,5 @@
 import { IP_ADDRESS, IP_ADDRESS_TRAIN } from "@/config/api.config";
-const API_BASE_URL = `http://${IP_ADDRESS_TRAIN}:3000`;
+const API_BASE_URL = `http://${IP_ADDRESS}:3000`;
 
 export const fetchWorkouts = async () => {
     try {
@@ -38,6 +38,20 @@ export const addWorkout = async (workout: { workoutId: string; workoutName: stri
         return data;
     }catch(e){
         console.error('Error adding workouts:', e);
+        throw e;
+    }
+}
+
+export const clearData = async () =>{
+    try{
+        const response = await fetch(`${API_BASE_URL}/delete-all-data`, {
+            method:'DELETE'
+        });
+        if (!response.ok){
+            throw new Error('Failed to clear data')
+        }
+    }catch(e){
+        console.error('error deleting workouts: ', e);
         throw e;
     }
 }

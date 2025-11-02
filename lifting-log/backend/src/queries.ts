@@ -48,3 +48,4 @@ export const GET_SETS_BY_WORKOUT = `
     WHERE workoutId = ?
     ORDER BY set_order ASC
 `;
+export const DELETE_ALL_WORKOUTS = `DELETE FROM workouts`;

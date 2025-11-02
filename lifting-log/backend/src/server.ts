@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 
 import pool from './db';
-import { CREATE_WORKOUTS_TABLE, CREATE_SETS_TABLE, GET_ALL_WORKOUTS, GET_SETS_BY_WORKOUT, INSERT_WORKOUT, INSERT_SET } from './queries';
+import { CREATE_WORKOUTS_TABLE, CREATE_SETS_TABLE, GET_ALL_WORKOUTS, GET_SETS_BY_WORKOUT, INSERT_WORKOUT, INSERT_SET, DELETE_ALL_WORKOUTS } from './queries';
 import { testConnection } from './db';
 
 dotenv.config();
@@ -111,8 +111,27 @@ app.post('/workouts', async (req: Request, res: Response) => {
     }
 });
 
+// update workout with sets - best i think would be to override old sets with new sets with changes
+app.put('/workouts/:workoutId', async (req: Request, res: Response) =>{
+    const connection = await pool.getConnection();
+    try{
+        
+    }catch(e){
 
+    }finally{
 
+    }
+});
+
+app.delete('/delete-all-data', async (req: Request, res: Response) =>{
+    try{
+        await pool.query(DELETE_ALL_WORKOUTS);
+        res.json({ message: 'All data deleted successfully' });
+    }catch(e){
+        console.error('error deleting data: ', e);
+        res.status(500).json({ error: 'Failed to delete data' });
+    }
+})
 
 
 const initDb = async () => {
