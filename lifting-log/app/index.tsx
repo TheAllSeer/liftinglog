@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {ScrollView, Text, View, Dimensions, TouchableOpacity} from 'react-native';
+import {ScrollView, Text, View, Dimensions, TouchableOpacity, Alert} from 'react-native';
 import styles, {trademarks} from '@/styles/general';
 import WeekNavigator from '@/components/WeekNavigator';
 import WeeklyVolume from '@/components/WeeklyVolume';
@@ -15,6 +15,7 @@ import { weeklyData } from '@/utils/mockData';
 import { sendLog } from '@/utils/utilFunctions';
 import { getWeekRangeFromDate } from '@/utils/utilFunctions';
 import AppHeader from "@/components/AppHeader";
+import { clearData } from '@/utils/api';
 
 import { fetchWorkouts, addWorkout } from '@/utils/api';
 
@@ -76,8 +77,20 @@ const Home = () => {
         setIsWorkoutFormVisible(true);
     };
 
+    const handleClearData = async ()=>{
+        try{
+            await clearData()
+            const data = await fetchWorkouts();
+            setWorkouts(data);
+            console.log('Data cleared successfully');
+        }catch(e){
+            console.error('failed to clear data in index!: ', e)
+            Alert.alert('Error', 'Failed to clear data. Please try again.');
+        }
+    }
+
     return <View style={[styles.base, {flex: 1}]}>
-        <AppHeader />
+        <AppHeader onClearData={handleClearData}/>
             <ScrollView>
                 <WeekNavigator date={currentDate} setDate={setCurrentDate}/>
                 <WeeklyVolume workouts={filteredWorkouts} />

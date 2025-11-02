@@ -4,12 +4,12 @@ import styles, {trademarks} from '@/styles/general';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 import { Alert } from 'react-native';
-import { clearData, fetchWorkouts } from '@/utils/api';
+import {AppHeaderProps} from '@/utils/props';
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
-const AppHeader = ()=>{
+const AppHeader = ({onClearData}:AppHeaderProps)=>{
 
     const handleSettingsPress = ()=>{
         Alert.alert(
@@ -25,7 +25,7 @@ const AppHeader = ()=>{
                     style: 'destructive',
                     onPress: async () => {
                         try{
-                            await clearData();
+                            await onClearData();
                             console.log('User confirmed - delete all data');
                         }catch(e){
 

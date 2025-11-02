@@ -1,6 +1,8 @@
 import { Set, Workout } from "./types";
 
-
+export interface AppHeaderProps {
+  onClearData: () => Promise<void>;
+}
 export interface WeeklyNavigatorProps {
   date: Date;
   setDate: (date: Date) => void;
