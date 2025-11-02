@@ -9,7 +9,6 @@ export default function RootLayout() {
       <StatusBar 
         style="light"         
       />
-      {/* <AppHeader /> */}
       <Stack screenOptions={{ headerShown: false }} /> 
     </SafeAreaView>
 }
