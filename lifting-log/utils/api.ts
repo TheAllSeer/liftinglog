@@ -42,6 +42,33 @@ export const addWorkout = async (workout: { workoutId: string; workoutName: stri
     }
 }
 
+export const updateWorkout = async (workout: { workoutId: string; workoutName: string; workoutDate: Date; sets:any[] })=>{
+    try{
+        const reqBody = {
+            workoutId: workout.workoutId,
+            workoutName: workout.workoutName,
+            workoutDate: workout.workoutDate.toISOString().slice(0, 19).replace('T', ' '),
+            sets:workout.sets
+        };
+        const response = await fetch(`${API_BASE_URL}/workouts:${workout.workoutId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify(reqBody)
+        });
+        if (!response.ok) {
+            throw new Error('Failed to update workout');
+        }
+        const data = await response.json();
+        return data;
+    }catch(e){
+        console.error('Error updating workouts:', e);
+        throw e;
+    }
+}
+
+
 export const clearData = async () =>{
     try{
         const response = await fetch(`${API_BASE_URL}/delete-all-data`, {

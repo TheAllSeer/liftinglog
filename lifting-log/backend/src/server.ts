@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 
 import pool from './db';
-import { CREATE_WORKOUTS_TABLE, CREATE_SETS_TABLE, GET_ALL_WORKOUTS, GET_SETS_BY_WORKOUT, INSERT_WORKOUT, INSERT_SET, DELETE_ALL_WORKOUTS } from './queries';
+import { CREATE_WORKOUTS_TABLE, CREATE_SETS_TABLE, GET_ALL_WORKOUTS, GET_SETS_BY_WORKOUT, INSERT_WORKOUT, INSERT_SET, DELETE_ALL_WORKOUTS, UPDATE_WORKOUT_METADATA, DELETE_ALL_SETS_BY_WORKOUT_ID } from './queries';
 import { testConnection } from './db';
 
 dotenv.config();
@@ -115,11 +115,36 @@ app.post('/workouts', async (req: Request, res: Response) => {
 app.put('/workouts/:workoutId', async (req: Request, res: Response) =>{
     const connection = await pool.getConnection();
     try{
+        const { workoutId } = req.params;
+        const { workoutName, workoutDate, sets } = req.body;
+        await connection.beginTransaction();
         
-    }catch(e){
+        await connection.query(
+            UPDATE_WORKOUT_METADATA,
+            [workoutName, workoutDate, workoutId]
+        );
+        await connection.query(DELETE_ALL_SETS_BY_WORKOUT_ID, [workoutId]);
+        if (sets && sets.length > 0){
+            for (let i = 0; i < sets.length; i++){
+                const set = sets[i];
+                const setId = `set_${Date.now()}_${i}`;
+                await connection.query(INSERT_SET, [
+                    setId, workoutId, set.exerciseName, set.reps,
+                    set.weight.amount, set.weight.type, i,
+                    set.isSuperSet || false, set.parent_set_id || null
+                ]
+                );
+            };
+        }
+        await connection.commit();
+        res.json({ message: 'Workout updated successfully' });
 
+    }catch(e){  
+        await connection.rollback();
+        console.error('Error updating workout:', e);
+        res.status(500).json({ error: 'Failed to update workout' });
     }finally{
-
+        connection.release();
     }
 });
 

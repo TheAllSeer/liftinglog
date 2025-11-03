@@ -49,3 +49,8 @@ export const GET_SETS_BY_WORKOUT = `
     ORDER BY set_order ASC
 `;
 export const DELETE_ALL_WORKOUTS = `DELETE FROM workouts`;
+
+export const UPDATE_WORKOUT_METADATA = `UPDATE workouts SET workoutName = ?, workoutDate = ? WHERE workoutId = ?`;
+
+export const DELETE_ALL_SETS_BY_WORKOUT_ID = `DELETE FROM sets WHERE workoutId = ?`;
+
