@@ -148,10 +148,11 @@ app.put('/workouts/:workoutId', async (req: Request, res: Response) =>{
     }
 });
 
-app.delete('workouts/:workoutId', async  (req: Request, res: Response) =>{
+app.delete('/workouts/:workoutId', async  (req: Request, res: Response) =>{
     try{
         const {workoutId} = req.params;
         await pool.query(DELETE_WORKOUT, [workoutId]);
+        res.json({ message: 'Workout deleted successfully' });
     }catch(e){
         console.error('Error deleting workout:', e);
         res.status(500).json({ error: 'Failed to delete workout' });
