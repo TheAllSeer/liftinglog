@@ -72,7 +72,22 @@ export const updateWorkout = async (workout: { workoutId: string; workoutName: s
     }
 }
 
-
+export const deleteWorkout = async (workoutId:string) =>{
+    try{
+        const response = await fetch(`${API_BASE_URL}/workouts/${workoutId}`, {
+            method:'DELETE'
+        });
+        if (!response.ok) {
+            throw new Error('Failed to delete workout');
+        }
+        const data = await response.json();
+        return data;
+        
+    }catch(e){
+        console.error('Error deleting workout:', e);
+        throw e;
+    }
+}
 export const clearData = async () =>{
     try{
         const response = await fetch(`${API_BASE_URL}/delete-all-data`, {

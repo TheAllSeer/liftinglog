@@ -15,7 +15,7 @@ import { weeklyData } from '@/utils/mockData';
 import { sendLog } from '@/utils/utilFunctions';
 import { getWeekRangeFromDate } from '@/utils/utilFunctions';
 import AppHeader from "@/components/AppHeader";
-import { clearData, updateWorkout } from '@/utils/api';
+import { clearData, deleteWorkout, updateWorkout } from '@/utils/api';
 
 import { fetchWorkouts, addWorkout } from '@/utils/api';
 
@@ -106,6 +106,18 @@ const Home = () => {
             Alert.alert('Error', 'Failed to update workout');
         }
     };
+    const HandleDeleteWorkout = async (workoutId: string) => {
+        try {
+            await deleteWorkout(workoutId);
+            const data = await fetchWorkouts();
+            setWorkouts(data);
+            setIsWorkoutFormVisible(false);
+            setEditingWorkout(null);
+        } catch (error) {
+            console.error('Failed to delete workout:', error);
+            Alert.alert('Error', 'Failed to delete workout');
+        }
+    };
     return <View style={[styles.base, {flex: 1}]}>
         <AppHeader onClearData={handleClearData}/>
             <ScrollView>
@@ -125,6 +137,7 @@ const Home = () => {
                     onAddWorkout={HandleAddWorkout}
                     editingWorkout={editingWorkout}
                     onEditWorkout={HandleEditWorkout}
+                    onDeleteWorkout={HandleDeleteWorkout}
                 />
             )}
 

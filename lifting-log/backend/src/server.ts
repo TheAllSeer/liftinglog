@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 
 import pool from './db';
-import { CREATE_WORKOUTS_TABLE, CREATE_SETS_TABLE, GET_ALL_WORKOUTS, GET_SETS_BY_WORKOUT, INSERT_WORKOUT, INSERT_SET, DELETE_ALL_WORKOUTS, UPDATE_WORKOUT_METADATA, DELETE_ALL_SETS_BY_WORKOUT_ID } from './queries';
+import { CREATE_WORKOUTS_TABLE, CREATE_SETS_TABLE, GET_ALL_WORKOUTS, GET_SETS_BY_WORKOUT, INSERT_WORKOUT, INSERT_SET, DELETE_ALL_WORKOUTS, UPDATE_WORKOUT_METADATA, DELETE_ALL_SETS_BY_WORKOUT_ID, DELETE_WORKOUT } from './queries';
 import { testConnection } from './db';
 
 dotenv.config();
@@ -147,6 +147,17 @@ app.put('/workouts/:workoutId', async (req: Request, res: Response) =>{
         connection.release();
     }
 });
+
+app.delete('workouts/:workoutId', async  (req: Request, res: Response) =>{
+    try{
+        const {workoutId} = req.params;
+        await pool.query(DELETE_WORKOUT, [workoutId]);
+    }catch(e){
+        console.error('Error deleting workout:', e);
+        res.status(500).json({ error: 'Failed to delete workout' });
+    }
+    
+})
 
 app.delete('/delete-all-data', async (req: Request, res: Response) =>{
     try{

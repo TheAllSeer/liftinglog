@@ -37,6 +37,7 @@ export interface AddWorkoutFormProps {
     onAddWorkout: (workout: Workout) => void;
     editingWorkout?: Workout | null;
     onEditWorkout: (workout: Workout) => void;
+    onDeleteWorkout?: (workoutId: string) => void;
 }
 
 export interface SetsViewProps {

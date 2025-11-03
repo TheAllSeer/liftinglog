@@ -54,3 +54,5 @@ export const UPDATE_WORKOUT_METADATA = `UPDATE workouts SET workoutName = ?, wor
 
 export const DELETE_ALL_SETS_BY_WORKOUT_ID = `DELETE FROM sets WHERE workoutId = ?`;
 
+export const DELETE_WORKOUT = `DELETE FROM workouts WHERE workoutId = ?`;
+
