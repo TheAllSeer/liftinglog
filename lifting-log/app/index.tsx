@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {ScrollView, Text, View, Dimensions, TouchableOpacity} from 'react-native';
+import {ScrollView, Text, View, Dimensions, TouchableOpacity, Alert} from 'react-native';
 import styles, {trademarks} from '@/styles/general';
 import WeekNavigator from '@/components/WeekNavigator';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import WeeklyVolume from '@/components/WeeklyVolume';
 import TopFive from '@/components/TopFive';
 import LiftsLog from '@/components/LiftsLog';
@@ -15,14 +14,48 @@ import { Workout } from '@/utils/types';
 import { weeklyData } from '@/utils/mockData';
 import { sendLog } from '@/utils/utilFunctions';
 import { getWeekRangeFromDate } from '@/utils/utilFunctions';
+import AppHeader from "@/components/AppHeader";
+import { clearData, deleteWorkout, updateWorkout } from '@/utils/api';
 
-const workouts = weeklyData;
+import { fetchWorkouts, addWorkout } from '@/utils/api';
+
 
 const Home = () => {
     sendLog('Home initialized.')
+    const [workouts, setWorkouts] = useState<Workout[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
     const [isWorkoutFormVisible, setIsWorkoutFormVisible] = useState(false);
     const [editingWorkout, setEditingWorkout] = useState<Workout | null>(null);
     const [currentDate, setCurrentDate] = useState<Date>(new Date())
+
+    useEffect(() => {
+        const loadWorkouts = async () => {
+            try {
+                setIsLoading(true);
+                const data = await fetchWorkouts();
+                setWorkouts(data);
+            } catch (error) {
+                console.error('Failed to load workouts:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        loadWorkouts();
+    }, []);
+
+    const HandleAddWorkout = async (newWorkout: Workout) => {
+        try {
+            await addWorkout(newWorkout);
+            // Refresh the workouts list
+            const data = await fetchWorkouts();
+            setWorkouts(data);
+            setIsWorkoutFormVisible(false);
+            setEditingWorkout(null);
+        } catch (error) {
+            console.error('Failed to add workout:', error);
+        }
+    };
 
     const getFilteredWorkouts = ()=>{
         const weekRange = getWeekRangeFromDate(currentDate);
@@ -43,12 +76,55 @@ const Home = () => {
         setIsWorkoutFormVisible(true);
     };
 
+    const handleClearData = async ()=>{
+        try{
+            await clearData()
+            const data = await fetchWorkouts();
+            setWorkouts(data);
+            console.log('Data cleared successfully');
+        }catch(e){
+            console.error('failed to clear data in index!: ', e)
+            Alert.alert('Error', 'Failed to clear data. Please try again.');
+        }
+    }
+    const HandleStartEdit = (workoutId: string) => {
+        const workout = workouts.find(w => w.workoutId === workoutId);
+        if (workout) {
+            setEditingWorkout(workout);
+            setIsWorkoutFormVisible(true);
+        }
+    };
+    const HandleEditWorkout = async (updatedWorkout: Workout) => {
+        try {
+            await updateWorkout(updatedWorkout);
+            const data = await fetchWorkouts();
+            setWorkouts(data);
+            setIsWorkoutFormVisible(false);
+            setEditingWorkout(null);
+        } catch (error) {
+            console.error('Failed to update workout:', error);
+            Alert.alert('Error', 'Failed to update workout');
+        }
+    };
+    const HandleDeleteWorkout = async (workoutId: string) => {
+        try {
+            await deleteWorkout(workoutId);
+            const data = await fetchWorkouts();
+            setWorkouts(data);
+            setIsWorkoutFormVisible(false);
+            setEditingWorkout(null);
+        } catch (error) {
+            console.error('Failed to delete workout:', error);
+            Alert.alert('Error', 'Failed to delete workout');
+        }
+    };
     return <View style={[styles.base, {flex: 1}]}>
+        <AppHeader onClearData={handleClearData}/>
             <ScrollView>
                 <WeekNavigator date={currentDate} setDate={setCurrentDate}/>
                 <WeeklyVolume workouts={filteredWorkouts} />
                 <TopFive workouts={filteredWorkouts} />
-                <LiftsLog workouts={filteredWorkouts} />
+                <LiftsLog workouts={filteredWorkouts} onStartEditWorkout={HandleStartEdit}/>
                 <PersonalRecords/>
                 <PersonalTrainer />
             </ScrollView>
@@ -58,7 +134,10 @@ const Home = () => {
                     onRequestClose={HandleOnCloseForm} 
                     isVisible={isWorkoutFormVisible} 
                     onClose={HandleOnCloseForm}
+                    onAddWorkout={HandleAddWorkout}
                     editingWorkout={editingWorkout}
+                    onEditWorkout={HandleEditWorkout}
+                    onDeleteWorkout={HandleDeleteWorkout}
                 />
             )}
 

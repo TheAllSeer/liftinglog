@@ -1,27 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Dimensions, Pressable, ScrollView, Text, Modal, TextInput } from 'react-native';
+import { StyleSheet, View, Dimensions, Pressable, ScrollView, Text, Modal, TextInput, Alert } from 'react-native';
 import styles, {trademarks} from '@/styles/general';
 import { Set, Workout } from '@/utils/types';
 import { mockSets } from '@/utils/mockData';
 import SetsView from './SetsView';
 import SaveWorkout from './SaveWorkout';
 import { Exercise } from '@/utils/exercise_enums';
+import { AddWorkoutFormProps } from '@/utils/props';
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
-
-interface AddWorkoutFormProps {
-    onClose: () => void;
-    isVisible: boolean;
-    onRequestClose: () => void;
-    editingWorkout?: Workout | null;
-}
 
 const AddWorkoutForm = ({
     onClose, 
     isVisible, 
     onRequestClose, 
-    editingWorkout
+    onAddWorkout,
+    editingWorkout, 
+    onEditWorkout,
+    onDeleteWorkout
 }: AddWorkoutFormProps) => {
     
     const [sets, setSets] = useState<Set[]>([]);
@@ -45,7 +42,7 @@ const AddWorkoutForm = ({
         const newSet: Set = {
             weight: { amount: 0, type: 'kgs' },
             reps: 0,
-            exerciseName: Exercise.BENCH_PRESS,
+            exerciseName: Exercise.DEFAULT,
             isSuperSet: false
         };
         setSets([...sets, newSet]);
@@ -66,6 +63,42 @@ const AddWorkoutForm = ({
             // Reset to empty/default
             setSets([]);
             setWorkoutName('');
+        }
+    };
+    const handleSave = () => {
+        const hasInvalidExercise = sets.some(set => set.exerciseName === Exercise.DEFAULT);
+    
+        if (hasInvalidExercise) {
+            alert('Please select an exercise for all sets before saving');
+            return; // Don't save, don't close, don't lose progress
+        }
+        const workoutData: Workout = {
+            workoutId: editingWorkout?.workoutId || `workout_${Date.now()}`,
+            workoutName: workoutName || 'Untitled Workout',
+            workoutDate: editingWorkout?.workoutDate || new Date(),
+            sets: sets
+        };
+        if (editingWorkout) {
+            onEditWorkout(workoutData);
+        } else {
+            onAddWorkout(workoutData);
+        }
+    };
+
+    const handleDelete = () => {
+        if (editingWorkout && onDeleteWorkout) {
+            Alert.alert(
+                'Delete Workout',
+                'Are you sure you want to delete this workout? This action cannot be undone.',
+                [
+                    { text: 'Cancel', style: 'cancel' },
+                    {
+                        text: 'Delete',
+                        style: 'destructive',
+                        onPress: () => onDeleteWorkout(editingWorkout.workoutId)
+                    }
+                ]
+            );
         }
     };
 
@@ -100,11 +133,23 @@ const AddWorkoutForm = ({
                             onSetUpdate={handleSetUpdate} 
                             onAddSet={handleAddSet} 
                         />
+
+                        {/* Delete button - only show when editing */}
+                        {editingWorkout && onDeleteWorkout && (
+                            <Pressable 
+                                style={[wfStyles.deleteButton]} 
+                                onPress={handleDelete}
+                            >
+                                <Text style={[styles.baseText, wfStyles.deleteButtonText]}>
+                                    Delete Workout
+                                </Text>
+                            </Pressable>
+                        )}
                     </ScrollView>
                     
                     <SaveWorkout 
                         onReset={handleReset} 
-                        onSave={onClose}
+                        onSave={handleSave}
                     />
                 </Pressable>
             </Pressable>
@@ -129,7 +174,21 @@ const wfStyles = StyleSheet.create({
         width:screenWidth,
         backgroundColor:trademarks.black,
         zIndex:2147483647,
-    }, 
+    },
+    deleteButton: {
+        backgroundColor: '#dc3545',
+        padding: 15,
+        borderRadius: 8,
+        alignItems: 'center',
+        marginHorizontal: 20,
+        marginTop: 20,
+        marginBottom: 10,
+    },
+    deleteButtonText: {
+        color: trademarks.white,
+        fontWeight: '600',
+        fontSize: 16,
+    },
 });
 
 const formStyles = StyleSheet.create({

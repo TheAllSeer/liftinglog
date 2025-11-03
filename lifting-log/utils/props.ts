@@ -1,6 +1,8 @@
 import { Set, Workout } from "./types";
 
-
+export interface AppHeaderProps {
+  onClearData: () => Promise<void>;
+}
 export interface WeeklyNavigatorProps {
   date: Date;
   setDate: (date: Date) => void;
@@ -15,6 +17,7 @@ export interface TopFiveProps {
 
 export interface LiftLogProps {
     workouts: Workout[];
+    onStartEditWorkout: (workoutId: string) => void;
 }
 
 export interface LiftCardProps {
@@ -31,7 +34,10 @@ export interface AddWorkoutFormProps {
     onClose: () => void;
     isVisible: boolean;
     onRequestClose: () => void;
+    onAddWorkout: (workout: Workout) => void;
     editingWorkout?: Workout | null;
+    onEditWorkout: (workout: Workout) => void;
+    onDeleteWorkout?: (workoutId: string) => void;
 }
 
 export interface SetsViewProps {

@@ -27,6 +27,7 @@ export enum MuscleGroup {
 // Exercises Enum
 export enum Exercise {
     // Chest
+    DEFAULT="",
     BENCH_PRESS = "bench press",
     INCLINE_BENCH_PRESS = "incline bench press",
     DECLINE_BENCH_PRESS = "decline bench press",
@@ -80,6 +81,10 @@ export enum Exercise {
 // Exercise to Muscle Group mapping using enums
 export const exerciseToMuscleGroup: Record<Exercise, { primary: MuscleGroup[]; secondary: MuscleGroup[] }> = {
     // Chest exercises
+    [Exercise.DEFAULT]: {
+        primary: [],
+        secondary: []
+    },
     [Exercise.BENCH_PRESS]: {
         primary: [MuscleGroup.CHEST],
         secondary: [MuscleGroup.ANTERIOR_DELTS, MuscleGroup.TRICEPS]

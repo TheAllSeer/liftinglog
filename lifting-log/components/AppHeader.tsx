@@ -3,11 +3,41 @@ import {Text, View, Dimensions, StyleSheet, Pressable} from 'react-native';
 import styles, {trademarks} from '@/styles/general';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons';
 import Constants from 'expo-constants';
+import { Alert } from 'react-native';
+import {AppHeaderProps} from '@/utils/props';
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
-const AppHeader = ()=>{
+const AppHeader = ({onClearData}:AppHeaderProps)=>{
+
+    const handleSettingsPress = ()=>{
+        Alert.alert(
+            'Clear Data', 
+            'Are you sure you want to clear data? this action cannot be undone.',
+            [
+                {
+                    text: 'Cancel',
+                    style: 'cancel',
+                },
+                {
+                    text: 'Delete All',
+                    style: 'destructive',
+                    onPress: async () => {
+                        try{
+                            await onClearData();
+                            console.log('User confirmed - delete all data');
+                        }catch(e){
+
+                        }
+                        
+                    },
+                },
+            ],
+            { cancelable: true }
+        );
+    };
+
 
     return <View style={[headerStyles.container]}>
         <View style={[headerStyles.logo]}>
@@ -18,7 +48,7 @@ const AppHeader = ()=>{
             <Text style={[{color:trademarks.white, fontSize:16, fontWeight:'800', marginLeft:4}]}>EAVY LIFTING</Text>
         </View>
         <View style={[headerStyles.settings]}>
-            <Pressable>
+            <Pressable onPress={handleSettingsPress}>
             {(({pressed})=>(
                 <Ionicons name={pressed ? 'settings-outline' : 'settings'} size={24} color={trademarks.white} ></Ionicons>
             ))}

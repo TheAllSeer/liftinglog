@@ -5,6 +5,7 @@ import styles, {trademarks} from '@/styles/general';
 import {SetsViewProps, WeightTypeSwitchProps} from '@/utils/props'
 import { Set } from '@/utils/types';
 import KglbSwitch from './KglbSwitch';
+import { Exercise } from '@/utils/exercise_enums';
 import AddSet from './AddSet';
 import SingleSetView from './SingleSetView'
 import ExerciseDropdown from '@/utils/ExerciseDropdown';
@@ -21,22 +22,15 @@ const SetsView = ({sets, onAddSet, onSetUpdate}:SetsViewProps)=>{
     return <View key={"setsviewcontainer"} style={[svStyle.allSetsContainerStyle]}>
         {sets.map((set, index)=>(
             <View key={index}>
-                {(!sets?.[index-1] || sets?.[index-1].exerciseName !== set.exerciseName)
+                {(!sets?.[index-1] || sets?.[index-1].exerciseName !== set.exerciseName || set.exerciseName === Exercise.DEFAULT)
                 && (<View style={{alignItems:'center'}}>
-                    
-
-
-                    {set.reps === 0 && set.weight.amount === 0 ? (
-                        <ExerciseDropdown 
-                            selectedExercise={set.exerciseName}
-                            onExerciseChange={(exercise) => {
-                                const updatedSet = {...set, exerciseName: exercise};
-                                handleSetUpdate(index, updatedSet);
-                            }}
-                        />
-                    ) : (
-                        <Text style={[styles.baseText, svStyle.exerciseNameHeader]}>{set.exerciseName}</Text>
-                    )}
+                    <ExerciseDropdown 
+                        selectedExercise={set.exerciseName}
+                        onExerciseChange={(exercise) => {
+                            const updatedSet = {...set, exerciseName: exercise};
+                            handleSetUpdate(index, updatedSet);
+                        }}
+                    />
                 </View>)
                 }
                 

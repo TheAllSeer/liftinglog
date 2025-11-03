@@ -26,6 +26,9 @@ export function mergeTwoVolumeObjects(obj1: volumeData, obj2: volumeData) : volu
 
 export function calculateWorkoutVolume(workout:Workout){
     let volume:volumeData = {};
+    if (!workout.sets || workout.sets.length === 0) {
+        return volume;
+    }
     workout.sets.forEach((set)=>{
         const muscleMap = exerciseToMuscleGroup[set.exerciseName];
             if (!muscleMap){
