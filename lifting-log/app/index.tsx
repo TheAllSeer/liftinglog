@@ -15,7 +15,7 @@ import { weeklyData } from '@/utils/mockData';
 import { sendLog } from '@/utils/utilFunctions';
 import { getWeekRangeFromDate } from '@/utils/utilFunctions';
 import AppHeader from "@/components/AppHeader";
-import { clearData } from '@/utils/api';
+import { clearData, updateWorkout } from '@/utils/api';
 
 import { fetchWorkouts, addWorkout } from '@/utils/api';
 
@@ -54,7 +54,6 @@ const Home = () => {
             setEditingWorkout(null);
         } catch (error) {
             console.error('Failed to add workout:', error);
-            // Maybe show an error message to the user
         }
     };
 
@@ -88,14 +87,32 @@ const Home = () => {
             Alert.alert('Error', 'Failed to clear data. Please try again.');
         }
     }
-
+    const HandleStartEdit = (workoutId: string) => {
+        const workout = workouts.find(w => w.workoutId === workoutId);
+        if (workout) {
+            setEditingWorkout(workout);
+            setIsWorkoutFormVisible(true);
+        }
+    };
+    const HandleEditWorkout = async (updatedWorkout: Workout) => {
+        try {
+            await updateWorkout(updatedWorkout);
+            const data = await fetchWorkouts();
+            setWorkouts(data);
+            setIsWorkoutFormVisible(false);
+            setEditingWorkout(null);
+        } catch (error) {
+            console.error('Failed to update workout:', error);
+            Alert.alert('Error', 'Failed to update workout');
+        }
+    };
     return <View style={[styles.base, {flex: 1}]}>
         <AppHeader onClearData={handleClearData}/>
             <ScrollView>
                 <WeekNavigator date={currentDate} setDate={setCurrentDate}/>
                 <WeeklyVolume workouts={filteredWorkouts} />
                 <TopFive workouts={filteredWorkouts} />
-                <LiftsLog workouts={filteredWorkouts} />
+                <LiftsLog workouts={filteredWorkouts} onStartEditWorkout={HandleStartEdit}/>
                 <PersonalRecords/>
                 <PersonalTrainer />
             </ScrollView>
@@ -107,6 +124,7 @@ const Home = () => {
                     onClose={HandleOnCloseForm}
                     onAddWorkout={HandleAddWorkout}
                     editingWorkout={editingWorkout}
+                    onEditWorkout={HandleEditWorkout}
                 />
             )}
 

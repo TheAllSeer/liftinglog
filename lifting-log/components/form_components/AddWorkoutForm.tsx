@@ -16,7 +16,8 @@ const AddWorkoutForm = ({
     isVisible, 
     onRequestClose, 
     onAddWorkout,
-    editingWorkout
+    editingWorkout, 
+    onEditWorkout
 }: AddWorkoutFormProps) => {
     
     const [sets, setSets] = useState<Set[]>([]);
@@ -71,12 +72,16 @@ const AddWorkoutForm = ({
             return; // Don't save, don't close, don't lose progress
         }
         const workoutData: Workout = {
-            workoutId: `workout_${Date.now()}`,
+            workoutId: editingWorkout?.workoutId || `workout_${Date.now()}`,
             workoutName: workoutName || 'Untitled Workout',
-            workoutDate: new Date(),
+            workoutDate: editingWorkout?.workoutDate || new Date(),
             sets: sets
         };
-        onAddWorkout(workoutData);
+        if (editingWorkout) {
+            onEditWorkout(workoutData);
+        } else {
+            onAddWorkout(workoutData);
+        }
     };
 
     return (

@@ -17,6 +17,7 @@ export interface TopFiveProps {
 
 export interface LiftLogProps {
     workouts: Workout[];
+    onStartEditWorkout: (workoutId: string) => void;
 }
 
 export interface LiftCardProps {
@@ -35,6 +36,7 @@ export interface AddWorkoutFormProps {
     onRequestClose: () => void;
     onAddWorkout: (workout: Workout) => void;
     editingWorkout?: Workout | null;
+    onEditWorkout: (workout: Workout) => void;
 }
 
 export interface SetsViewProps {

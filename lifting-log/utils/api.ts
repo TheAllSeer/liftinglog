@@ -43,14 +43,18 @@ export const addWorkout = async (workout: { workoutId: string; workoutName: stri
 }
 
 export const updateWorkout = async (workout: { workoutId: string; workoutName: string; workoutDate: Date; sets:any[] })=>{
+    const formatDate = (date: Date | string) => {
+        const dateObj = date instanceof Date ? date : new Date(date);
+        return dateObj.toISOString().slice(0, 19).replace('T', ' ');
+    };
     try{
         const reqBody = {
             workoutId: workout.workoutId,
             workoutName: workout.workoutName,
-            workoutDate: workout.workoutDate.toISOString().slice(0, 19).replace('T', ' '),
+            workoutDate: formatDate(workout.workoutDate),
             sets:workout.sets
         };
-        const response = await fetch(`${API_BASE_URL}/workouts:${workout.workoutId}`, {
+        const response = await fetch(`${API_BASE_URL}/workouts/${workout.workoutId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
