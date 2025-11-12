@@ -1,5 +1,5 @@
 import { IP_ADDRESS, IP_ADDRESS_TRAIN } from "@/config/api.config";
-const API_BASE_URL = `http://${IP_ADDRESS}:3000`;
+const API_BASE_URL = `http://${IP_ADDRESS_TRAIN}:3000`;
 
 export const fetchWorkouts = async () => {
     try {
@@ -82,7 +82,7 @@ export const deleteWorkout = async (workoutId:string) =>{
         }
         const data = await response.json();
         return data;
-        
+
     }catch(e){
         console.error('Error deleting workout:', e);
         throw e;

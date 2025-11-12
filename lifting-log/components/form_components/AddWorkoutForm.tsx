@@ -109,7 +109,7 @@ const AddWorkoutForm = ({
             transparent={true}
             onRequestClose={onClose}>
             <Pressable style={{flex: 1}} onPress={onClose}>
-                <Pressable onPress={() => {}} style={[wfStyles.workoutFormContainer]}>
+                <Pressable onPress={(e) => e.stopPropagation()} style={[wfStyles.workoutFormContainer]}>
                     <ScrollView style={[{flex:1}]}>
                         <View style={{alignItems:'center'}}>
                             <Text style={[styles.baseText, wfStyles.workoutFormHeader]}>
