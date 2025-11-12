@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { StyleSheet, View, Dimensions, Pressable, ScrollView, Text } from 'react-native';
 import styles, {trademarks} from '@/styles/general';
@@ -14,11 +13,12 @@ const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 
-const SetsView = ({sets, onAddSet, onSetUpdate}:SetsViewProps)=>{
+const SetsView = ({sets, onAddSet, onSetUpdate, onDeleteSet}:SetsViewProps)=>{
 
     const handleSetUpdate = (index: number, updatedSet: Set) => {
         onSetUpdate(index, updatedSet);
     };
+    
     return <View key={"setsviewcontainer"} style={[svStyle.allSetsContainerStyle]}>
         {sets.map((set, index)=>(
             <View key={index}>
@@ -34,8 +34,13 @@ const SetsView = ({sets, onAddSet, onSetUpdate}:SetsViewProps)=>{
                 </View>)
                 }
                 
-            <SingleSetView set={set} key={'_' + index.toString()} setIndex={index} onSetUpdate={handleSetUpdate}>
-            </SingleSetView>
+            <SingleSetView 
+                set={set} 
+                key={'_' + index.toString()} 
+                setIndex={index} 
+                onSetUpdate={handleSetUpdate}
+                onDeleteSet={onDeleteSet}
+            />
             </View>
         ))
         }

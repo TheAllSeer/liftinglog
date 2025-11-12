@@ -10,7 +10,7 @@ const screenHeight = Dimensions.get("window").height;
 
 
 
-const SingleSetView = ({set, setIndex, onSetUpdate}:singleSetViewProps)=>{
+const SingleSetView = ({set, setIndex, onSetUpdate, onDeleteSet}:singleSetViewProps)=>{
 
 
     // const [weightType, setWeightType] = useState<'kgs'|'lbs'>(set.weight.type)
@@ -65,7 +65,15 @@ const SingleSetView = ({set, setIndex, onSetUpdate}:singleSetViewProps)=>{
                     placeholder=""
                     placeholderTextColor={trademarks.white}
                 />
-                <KglbSwitch weightType={set.weight.type} onTypeChange={onWeightTypeChange} ></KglbSwitch>
+                <KglbSwitch weightType={set.weight.type} onTypeChange={onWeightTypeChange} />
+                
+                {/* Delete button */}
+                <Pressable 
+                    style={ssvStyle.deleteButton}
+                    onPress={() => onDeleteSet(setIndex)}
+                >
+                    <Text style={[styles.baseText, ssvStyle.deleteButtonText]}>×</Text>
+                </Pressable>
             </View>
         </View>
     )
@@ -106,6 +114,21 @@ const ssvStyle = StyleSheet.create({
         paddingVertical: 8,
         textAlign: 'center',
         minWidth: 80,
+    },
+    deleteButton: {
+        backgroundColor: '#dc3545',
+        borderRadius: 6,
+        width: 32,
+        height: 32,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 8,
+    },
+    deleteButtonText: {
+        color: trademarks.white,
+        fontSize: 24,
+        fontWeight: '300',
+        lineHeight: 24,
     },
 })
 

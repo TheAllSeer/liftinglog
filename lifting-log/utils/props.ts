@@ -44,6 +44,7 @@ export interface SetsViewProps {
     sets:Set[];
     onAddSet:()=>void;
     onSetUpdate: (index: number, updatedSet: Set) => void;
+    onDeleteSet: (index: number) => void;
 }
 
 export interface WeightTypeSwitchProps {
@@ -71,6 +72,7 @@ export interface singleSetViewProps {
   set:Set;
   setIndex:number;
   onSetUpdate: (index: number, updatedSet: Set) => void;
+  onDeleteSet: (index: number) => void;
 }
 
 export interface NumberInputBoxProps {

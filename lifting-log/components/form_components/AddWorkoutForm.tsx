@@ -54,6 +54,10 @@ const AddWorkoutForm = ({
         );
     };
 
+    const handleDeleteSet = (index: number) => {
+        setSets(prevSets => prevSets.filter((_, i) => i !== index));
+    };
+
     const handleReset = () => {
         if (editingWorkout) {
             // Reset to original values
@@ -108,7 +112,7 @@ const AddWorkoutForm = ({
             animationType="slide"
             transparent={true}
             onRequestClose={onClose}>
-            <Pressable style={{flex: 1}} onPress={onClose}>
+            <Pressable style={{flex: 1, backgroundColor: 'rgba(0,0,0,0.5)'}} onPress={onClose}>
                 <Pressable onPress={(e) => e.stopPropagation()} style={[wfStyles.workoutFormContainer]}>
                     <ScrollView style={[{flex:1}]}>
                         <View style={{alignItems:'center'}}>
@@ -131,7 +135,8 @@ const AddWorkoutForm = ({
                         <SetsView 
                             sets={sets} 
                             onSetUpdate={handleSetUpdate} 
-                            onAddSet={handleAddSet} 
+                            onAddSet={handleAddSet}
+                            onDeleteSet={handleDeleteSet}
                         />
 
                         {/* Delete button - only show when editing */}
