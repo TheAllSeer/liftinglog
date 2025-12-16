@@ -43,3 +43,5 @@ sensitives
 .env
 
 api.config.ts
+
+.expo/
