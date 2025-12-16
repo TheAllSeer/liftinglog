@@ -10,7 +10,7 @@ import { testConnection } from './db';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -181,7 +181,7 @@ const initDb = async () => {
     }
 };
 
-app.listen(PORT, async () => {
+app.listen(PORT, '0.0.0.0', async () => {
     console.log(`Server running on http://localhost:${PORT}`);
     // await testConnection();
     await initDb();
