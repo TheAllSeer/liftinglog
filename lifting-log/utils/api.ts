@@ -1,5 +1,5 @@
 import { IP_ADDRESS, IP_ADDRESS_TRAIN, IP_ADDRESS_WORK, SERVER_ADDRESS } from "@/config/api.config";
-const API_BASE_URL = `http://${SERVER_ADDRESS}:3000`;
+const API_BASE_URL = `https://${SERVER_ADDRESS}`;
 
 export const fetchWorkouts = async () => {
     try {
